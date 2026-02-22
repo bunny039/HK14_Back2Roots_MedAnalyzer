@@ -3,7 +3,13 @@
 > A production-grade, AI-powered medical report analysis tool built with Streamlit.
 
 ---
+## Collaborately Made By Team Back2Roots
+> Bhouwmik Choudhury
+> Sameer Ranjan Nayak
+> Pritish Behera
+> Gudla Vivek
 
+---
 ## 🔁 Full Pipeline
 
 ```

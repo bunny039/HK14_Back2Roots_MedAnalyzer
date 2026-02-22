@@ -865,5 +865,322 @@
       "abnormal_count": 3,
       "normal_count": 0
     }
+  },
+  {
+    "timestamp": "2026-02-22T16:27:23.449097",
+    "date": "2026-02-22",
+    "lab_data": [
+      {
+        "Test": "Total Cholesterol",
+        "Value": 245.0,
+        "Unit": "mg/dL",
+        "Reference Range": "< 200",
+        "Status": "High",
+        "Severity": "Moderate"
+      },
+      {
+        "Test": "HDL Cholesterol",
+        "Value": 38.0,
+        "Unit": "mg/dL",
+        "Reference Range": "50.0 \u2013 60",
+        "Status": "Low",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "LDL Cholesterol",
+        "Value": 165.0,
+        "Unit": "mg/dL",
+        "Reference Range": "< 100",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "Triglycerides",
+        "Value": 210.0,
+        "Unit": "mg/dL",
+        "Reference Range": "< 150",
+        "Status": "High",
+        "Severity": "Moderate"
+      },
+      {
+        "Test": "VLDL",
+        "Value": 42.0,
+        "Unit": "mg/dL",
+        "Reference Range": "5.0 \u2013 40.0",
+        "Status": "High",
+        "Severity": "Mild"
+      }
+    ],
+    "summary": {
+      "heading": "5 Values Need Attention",
+      "description": "Your report shows 5 values \u2014 0 are normal and 5 are outside the expected range. Please share this report with your doctor for proper evaluation.",
+      "findings": [
+        {
+          "name": "Total Cholesterol",
+          "status": "High",
+          "value": 245.0,
+          "unit": "mg/dL",
+          "ref_range": "< 200",
+          "direction": "higher",
+          "severity": "notably",
+          "explanation": "High total cholesterol may increase the risk of heart disease over time. A heart-healthy diet, exercise, and sometimes medication can help."
+        },
+        {
+          "name": "HDL Cholesterol",
+          "status": "Low",
+          "value": 38.0,
+          "unit": "mg/dL",
+          "ref_range": "50.0 \u2013 60",
+          "direction": "lower",
+          "severity": "significantly",
+          "explanation": "Low HDL may increase cardiovascular risk. Regular aerobic exercise and avoiding smoking can help raise HDL levels."
+        },
+        {
+          "name": "LDL Cholesterol",
+          "status": "High",
+          "value": 165.0,
+          "unit": "mg/dL",
+          "ref_range": "< 100",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": "High LDL ('bad') cholesterol is a key risk factor for heart disease. Reducing saturated fats and increasing fibre can help lower it."
+        },
+        {
+          "name": "Triglycerides",
+          "status": "High",
+          "value": 210.0,
+          "unit": "mg/dL",
+          "ref_range": "< 150",
+          "direction": "higher",
+          "severity": "notably",
+          "explanation": "High triglycerides are linked to heart and pancreas risk. Reducing sugar, refined carbs, and alcohol usually helps."
+        },
+        {
+          "name": "VLDL",
+          "status": "High",
+          "value": 42.0,
+          "unit": "mg/dL",
+          "ref_range": "5.0 \u2013 40.0",
+          "direction": "higher",
+          "severity": "slightly",
+          "explanation": ""
+        }
+      ],
+      "lifestyle": [
+        "\ud83e\udd66 Eat more soluble fibre (oats, apples, beans)",
+        "\ud83d\udc1f Include omega-3 rich foods (salmon, walnuts, flaxseeds)",
+        "\ud83e\uddc8 Reduce saturated and trans fats",
+        "\ud83d\udeb4 Exercise most days of the week",
+        "\ud83d\udead Avoid smoking",
+        "\ud83e\ude7a Keep regular follow-up appointments with your doctor",
+        "\ud83d\udead Avoid smoking and limit alcohol"
+      ],
+      "total": 5,
+      "abnormal_count": 5,
+      "normal_count": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-22T16:27:53.692303",
+    "date": "2026-02-22",
+    "lab_data": [
+      {
+        "Test": "Hemoglobin",
+        "Value": 10.2,
+        "Unit": "g/dL",
+        "Reference Range": "13.0 \u2013 17.0",
+        "Status": "Low",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "Red Blood Cells",
+        "Value": 4.2,
+        "Unit": "million/\u00b5L",
+        "Reference Range": "4.5 \u2013 5.9",
+        "Status": "Low",
+        "Severity": "Moderate"
+      },
+      {
+        "Test": "White Blood Cells",
+        "Value": 12.0,
+        "Unit": "K/\u00b5L",
+        "Reference Range": "4.0 \u2013 11.0",
+        "Status": "High",
+        "Severity": "Mild"
+      },
+      {
+        "Test": "Platelets",
+        "Value": 2.8,
+        "Unit": "lakh/\u00b5L",
+        "Reference Range": "1.5 \u2013 4.5",
+        "Status": "Normal",
+        "Severity": "None"
+      },
+      {
+        "Test": "Hematocrit",
+        "Value": 32.0,
+        "Unit": "%",
+        "Reference Range": "40.0 \u2013 50.0",
+        "Status": "Low",
+        "Severity": "Severe"
+      }
+    ],
+    "summary": {
+      "heading": "4 Values Need Attention",
+      "description": "Your report shows 5 values \u2014 1 are normal and 4 are outside the expected range. Please share this report with your doctor for proper evaluation.",
+      "findings": [
+        {
+          "name": "Hemoglobin",
+          "status": "Low",
+          "value": 10.2,
+          "unit": "g/dL",
+          "ref_range": "13.0 \u2013 17.0",
+          "direction": "lower",
+          "severity": "significantly",
+          "explanation": "Low hemoglobin is the most common sign of anaemia. You may feel tired, short of breath, or dizzy. Iron, B12, or folate deficiency are common causes. A doctor can determine the exact cause and recommend treatment."
+        },
+        {
+          "name": "Red Blood Cells",
+          "status": "Low",
+          "value": 4.2,
+          "unit": "million/\u00b5L",
+          "ref_range": "4.5 \u2013 5.9",
+          "direction": "lower",
+          "severity": "notably",
+          "explanation": ""
+        },
+        {
+          "name": "White Blood Cells",
+          "status": "High",
+          "value": 12.0,
+          "unit": "K/\u00b5L",
+          "ref_range": "4.0 \u2013 11.0",
+          "direction": "higher",
+          "severity": "slightly",
+          "explanation": ""
+        },
+        {
+          "name": "Hematocrit",
+          "status": "Low",
+          "value": 32.0,
+          "unit": "%",
+          "ref_range": "40.0 \u2013 50.0",
+          "direction": "lower",
+          "severity": "significantly",
+          "explanation": ""
+        }
+      ],
+      "lifestyle": [
+        "\ud83e\udd69 Eat iron-rich foods (spinach, lean red meat, lentils)",
+        "\ud83c\udf4a Pair iron foods with vitamin C to boost absorption",
+        "\ud83e\ude7a Ask your doctor about iron supplements if needed",
+        "\ud83e\udd5a Include B12 sources (eggs, dairy, fish)",
+        "\ud83e\ude7a Keep regular follow-up appointments with your doctor",
+        "\ud83d\udead Avoid smoking and limit alcohol"
+      ],
+      "total": 5,
+      "abnormal_count": 4,
+      "normal_count": 1
+    }
+  },
+  {
+    "timestamp": "2026-02-22T16:28:23.718561",
+    "date": "2026-02-22",
+    "lab_data": [
+      {
+        "Test": "Blood Sugar",
+        "Value": 132.0,
+        "Unit": "mg/dL",
+        "Reference Range": "70.0 \u2013 99.0",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "Random Blood Sugar",
+        "Value": 210.0,
+        "Unit": "mg/dL",
+        "Reference Range": "70 \u2013 140.0",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "HbA1c",
+        "Value": 7.4,
+        "Unit": "%",
+        "Reference Range": "4.0 \u2013 5.7",
+        "Status": "High",
+        "Severity": "Severe"
+      }
+    ],
+    "summary": {
+      "heading": "3 Values Need Attention",
+      "description": "Your report shows 3 values \u2014 0 are normal and 3 are outside the expected range. Please share this report with your doctor for proper evaluation.",
+      "findings": [
+        {
+          "name": "Blood Sugar",
+          "status": "High",
+          "value": 132.0,
+          "unit": "mg/dL",
+          "ref_range": "70.0 \u2013 99.0",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": ""
+        },
+        {
+          "name": "Random Blood Sugar",
+          "status": "High",
+          "value": 210.0,
+          "unit": "mg/dL",
+          "ref_range": "70 \u2013 140.0",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": ""
+        },
+        {
+          "name": "HbA1c",
+          "status": "High",
+          "value": 7.4,
+          "unit": "%",
+          "ref_range": "4.0 \u2013 5.7",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": "HbA1c reflects your average blood sugar over 3 months. A raised value suggests blood sugar has been consistently elevated, which is important to address."
+        }
+      ],
+      "lifestyle": [
+        "\ud83d\ude34 Get 7\u20138 hours of quality sleep each night",
+        "\ud83d\udca7 Stay hydrated \u2014 drink 8 glasses of water daily",
+        "\ud83e\udd57 Eat a balanced diet with plenty of fruits and vegetables",
+        "\ud83d\udeb6 Be physically active for at least 30 minutes most days",
+        "\ud83e\uddd8 Manage stress through mindfulness, hobbies, or social connection",
+        "\ud83e\ude7a Keep regular follow-up appointments with your doctor",
+        "\ud83d\udead Avoid smoking and limit alcohol"
+      ],
+      "total": 3,
+      "abnormal_count": 3,
+      "normal_count": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-22T16:28:49.224191",
+    "date": "2026-02-22",
+    "lab_data": [],
+    "summary": {
+      "heading": "No Data Extracted",
+      "description": "We could not identify any lab values from this report. The file may be unclear or in an unsupported format.",
+      "findings": [],
+      "lifestyle": [
+        "\ud83d\ude34 Get 7\u20138 hours of quality sleep each night",
+        "\ud83d\udca7 Stay hydrated \u2014 drink 8 glasses of water daily",
+        "\ud83e\udd57 Eat a balanced diet with plenty of fruits and vegetables",
+        "\ud83d\udeb6 Be physically active for at least 30 minutes most days",
+        "\ud83e\uddd8 Manage stress through mindfulness, hobbies, or social connection",
+        "\ud83e\ude7a Keep regular follow-up appointments with your doctor",
+        "\ud83d\udead Avoid smoking and limit alcohol"
+      ],
+      "total": 0,
+      "abnormal_count": 0,
+      "normal_count": 0
+    }
   }
 ]
