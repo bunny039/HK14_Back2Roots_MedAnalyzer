@@ -1,4 +1,4 @@
-# 🏥 MediAssist — Medical Report Intelligence System
+# 🏥 MedAnalyzer — Medical Report Intelligence System
 
 > A production-grade, AI-powered medical report analysis tool built with Streamlit.
 
