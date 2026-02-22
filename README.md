@@ -4,10 +4,10 @@
 
 ---
 ## Collaborately Made By Team Back2Roots
-> Bhouwmik Choudhury
-> Sameer Ranjan Nayak
-> Pritish Behera
-> Gudla Vivek
+> Bhouwmik Choudhury <br>
+> Sameer Ranjan Nayak <br>
+> Pritish Behera <br>
+> Gudla Vivek <br>
 
 ---
 ## 🔁 Full Pipeline
