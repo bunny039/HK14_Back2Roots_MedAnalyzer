@@ -1,0 +1,15 @@
+# Secrets and Credentials
+.env
+credentials.json
+token.json
+
+# Databases
+users.db
+patient_db/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Streamlit
+.streamlit/secrets.toml
