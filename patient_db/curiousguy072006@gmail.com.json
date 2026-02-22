@@ -1182,5 +1182,881 @@
       "abnormal_count": 0,
       "normal_count": 0
     }
+  },
+  {
+    "timestamp": "2026-02-22T16:59:39.496932",
+    "date": "2026-02-22",
+    "lab_data": [
+      {
+        "Test": "Total Cholesterol",
+        "Value": 245.0,
+        "Unit": "mg/dL",
+        "Reference Range": "< 200",
+        "Status": "High",
+        "Severity": "Moderate"
+      },
+      {
+        "Test": "HDL Cholesterol",
+        "Value": 38.0,
+        "Unit": "mg/dL",
+        "Reference Range": "50.0 \u2013 60",
+        "Status": "Low",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "LDL Cholesterol",
+        "Value": 165.0,
+        "Unit": "mg/dL",
+        "Reference Range": "< 100",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "Triglycerides",
+        "Value": 210.0,
+        "Unit": "mg/dL",
+        "Reference Range": "< 150",
+        "Status": "High",
+        "Severity": "Moderate"
+      },
+      {
+        "Test": "VLDL",
+        "Value": 42.0,
+        "Unit": "mg/dL",
+        "Reference Range": "5.0 \u2013 40.0",
+        "Status": "High",
+        "Severity": "Mild"
+      }
+    ],
+    "summary": {
+      "heading": "5 Values Need Attention",
+      "description": "Your report shows 5 values \u2014 0 are normal and 5 are outside the expected range. Please share this report with your doctor for proper evaluation.",
+      "findings": [
+        {
+          "name": "Total Cholesterol",
+          "status": "High",
+          "value": 245.0,
+          "unit": "mg/dL",
+          "ref_range": "< 200",
+          "direction": "higher",
+          "severity": "notably",
+          "explanation": "High total cholesterol may increase the risk of heart disease over time. A heart-healthy diet, exercise, and sometimes medication can help."
+        },
+        {
+          "name": "HDL Cholesterol",
+          "status": "Low",
+          "value": 38.0,
+          "unit": "mg/dL",
+          "ref_range": "50.0 \u2013 60",
+          "direction": "lower",
+          "severity": "significantly",
+          "explanation": "Low HDL may increase cardiovascular risk. Regular aerobic exercise and avoiding smoking can help raise HDL levels."
+        },
+        {
+          "name": "LDL Cholesterol",
+          "status": "High",
+          "value": 165.0,
+          "unit": "mg/dL",
+          "ref_range": "< 100",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": "High LDL ('bad') cholesterol is a key risk factor for heart disease. Reducing saturated fats and increasing fibre can help lower it."
+        },
+        {
+          "name": "Triglycerides",
+          "status": "High",
+          "value": 210.0,
+          "unit": "mg/dL",
+          "ref_range": "< 150",
+          "direction": "higher",
+          "severity": "notably",
+          "explanation": "High triglycerides are linked to heart and pancreas risk. Reducing sugar, refined carbs, and alcohol usually helps."
+        },
+        {
+          "name": "VLDL",
+          "status": "High",
+          "value": 42.0,
+          "unit": "mg/dL",
+          "ref_range": "5.0 \u2013 40.0",
+          "direction": "higher",
+          "severity": "slightly",
+          "explanation": ""
+        }
+      ],
+      "lifestyle": [
+        "\ud83e\udd66 Eat more soluble fibre (oats, apples, beans)",
+        "\ud83d\udc1f Include omega-3 rich foods (salmon, walnuts, flaxseeds)",
+        "\ud83e\uddc8 Reduce saturated and trans fats",
+        "\ud83d\udeb4 Exercise most days of the week",
+        "\ud83d\udead Avoid smoking",
+        "\ud83e\ude7a Keep regular follow-up appointments with your doctor",
+        "\ud83d\udead Avoid smoking and limit alcohol"
+      ],
+      "total": 5,
+      "abnormal_count": 5,
+      "normal_count": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-22T16:59:56.234485",
+    "date": "2026-02-22",
+    "lab_data": [
+      {
+        "Test": "Total Cholesterol",
+        "Value": 245.0,
+        "Unit": "mg/dL",
+        "Reference Range": "< 200",
+        "Status": "High",
+        "Severity": "Moderate"
+      },
+      {
+        "Test": "HDL Cholesterol",
+        "Value": 38.0,
+        "Unit": "mg/dL",
+        "Reference Range": "50.0 \u2013 60",
+        "Status": "Low",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "LDL Cholesterol",
+        "Value": 165.0,
+        "Unit": "mg/dL",
+        "Reference Range": "< 100",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "Triglycerides",
+        "Value": 210.0,
+        "Unit": "mg/dL",
+        "Reference Range": "< 150",
+        "Status": "High",
+        "Severity": "Moderate"
+      },
+      {
+        "Test": "VLDL",
+        "Value": 42.0,
+        "Unit": "mg/dL",
+        "Reference Range": "5.0 \u2013 40.0",
+        "Status": "High",
+        "Severity": "Mild"
+      }
+    ],
+    "summary": {
+      "heading": "5 Values Need Attention",
+      "description": "Your report shows 5 values \u2014 0 are normal and 5 are outside the expected range. Please share this report with your doctor for proper evaluation.",
+      "findings": [
+        {
+          "name": "Total Cholesterol",
+          "status": "High",
+          "value": 245.0,
+          "unit": "mg/dL",
+          "ref_range": "< 200",
+          "direction": "higher",
+          "severity": "notably",
+          "explanation": "High total cholesterol may increase the risk of heart disease over time. A heart-healthy diet, exercise, and sometimes medication can help."
+        },
+        {
+          "name": "HDL Cholesterol",
+          "status": "Low",
+          "value": 38.0,
+          "unit": "mg/dL",
+          "ref_range": "50.0 \u2013 60",
+          "direction": "lower",
+          "severity": "significantly",
+          "explanation": "Low HDL may increase cardiovascular risk. Regular aerobic exercise and avoiding smoking can help raise HDL levels."
+        },
+        {
+          "name": "LDL Cholesterol",
+          "status": "High",
+          "value": 165.0,
+          "unit": "mg/dL",
+          "ref_range": "< 100",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": "High LDL ('bad') cholesterol is a key risk factor for heart disease. Reducing saturated fats and increasing fibre can help lower it."
+        },
+        {
+          "name": "Triglycerides",
+          "status": "High",
+          "value": 210.0,
+          "unit": "mg/dL",
+          "ref_range": "< 150",
+          "direction": "higher",
+          "severity": "notably",
+          "explanation": "High triglycerides are linked to heart and pancreas risk. Reducing sugar, refined carbs, and alcohol usually helps."
+        },
+        {
+          "name": "VLDL",
+          "status": "High",
+          "value": 42.0,
+          "unit": "mg/dL",
+          "ref_range": "5.0 \u2013 40.0",
+          "direction": "higher",
+          "severity": "slightly",
+          "explanation": ""
+        }
+      ],
+      "lifestyle": [
+        "\ud83e\udd66 Eat more soluble fibre (oats, apples, beans)",
+        "\ud83d\udc1f Include omega-3 rich foods (salmon, walnuts, flaxseeds)",
+        "\ud83e\uddc8 Reduce saturated and trans fats",
+        "\ud83d\udeb4 Exercise most days of the week",
+        "\ud83d\udead Avoid smoking",
+        "\ud83e\ude7a Keep regular follow-up appointments with your doctor",
+        "\ud83d\udead Avoid smoking and limit alcohol"
+      ],
+      "total": 5,
+      "abnormal_count": 5,
+      "normal_count": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-22T17:12:42.496247",
+    "date": "2026-02-22",
+    "lab_data": [
+      {
+        "Test": "Blood Sugar",
+        "Value": 162.0,
+        "Unit": "mg/dL",
+        "Reference Range": "70.0 \u2013 100.0",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "Postprandial Sugar",
+        "Value": 245.0,
+        "Unit": "mg/dL",
+        "Reference Range": "< 140",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "HbA1c",
+        "Value": 8.2,
+        "Unit": "%",
+        "Reference Range": "4.0 \u2013 5.6",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "AST",
+        "Value": 28.0,
+        "Unit": "\u00b5IU/mL",
+        "Reference Range": "2.0 \u2013 25.0",
+        "Status": "High",
+        "Severity": "Mild"
+      }
+    ],
+    "summary": {
+      "heading": "4 Values Need Attention",
+      "description": "Your report shows 4 values \u2014 0 are normal and 4 are outside the expected range. Please share this report with your doctor for proper evaluation.",
+      "findings": [
+        {
+          "name": "Blood Sugar",
+          "status": "High",
+          "value": 162.0,
+          "unit": "mg/dL",
+          "ref_range": "70.0 \u2013 100.0",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": ""
+        },
+        {
+          "name": "Postprandial Sugar",
+          "status": "High",
+          "value": 245.0,
+          "unit": "mg/dL",
+          "ref_range": "< 140",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": ""
+        },
+        {
+          "name": "HbA1c",
+          "status": "High",
+          "value": 8.2,
+          "unit": "%",
+          "ref_range": "4.0 \u2013 5.6",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": "HbA1c reflects your average blood sugar over 3 months. A raised value suggests blood sugar has been consistently elevated, which is important to address."
+        },
+        {
+          "name": "AST",
+          "status": "High",
+          "value": 28.0,
+          "unit": "\u00b5IU/mL",
+          "ref_range": "2.0 \u2013 25.0",
+          "direction": "higher",
+          "severity": "slightly",
+          "explanation": ""
+        }
+      ],
+      "lifestyle": [
+        "\ud83d\ude34 Get 7\u20138 hours of quality sleep each night",
+        "\ud83d\udca7 Stay hydrated \u2014 drink 8 glasses of water daily",
+        "\ud83e\udd57 Eat a balanced diet with plenty of fruits and vegetables",
+        "\ud83d\udeb6 Be physically active for at least 30 minutes most days",
+        "\ud83e\uddd8 Manage stress through mindfulness, hobbies, or social connection",
+        "\ud83e\ude7a Keep regular follow-up appointments with your doctor",
+        "\ud83d\udead Avoid smoking and limit alcohol"
+      ],
+      "total": 4,
+      "abnormal_count": 4,
+      "normal_count": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-22T17:21:48.605186",
+    "date": "2026-02-22",
+    "lab_data": [
+      {
+        "Test": "Blood Sugar",
+        "Value": 162.0,
+        "Unit": "mg/dL",
+        "Reference Range": "70.0 \u2013 100.0",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "Postprandial Sugar",
+        "Value": 245.0,
+        "Unit": "mg/dL",
+        "Reference Range": "< 140",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "HbA1c",
+        "Value": 8.2,
+        "Unit": "%",
+        "Reference Range": "4.0 \u2013 5.6",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "AST",
+        "Value": 28.0,
+        "Unit": "\u00b5IU/mL",
+        "Reference Range": "2.0 \u2013 25.0",
+        "Status": "High",
+        "Severity": "Mild"
+      }
+    ],
+    "summary": {
+      "heading": "4 Values Need Attention",
+      "description": "Your report shows 4 values \u2014 0 are normal and 4 are outside the expected range. Please share this report with your doctor for proper evaluation.",
+      "findings": [
+        {
+          "name": "Blood Sugar",
+          "status": "High",
+          "value": 162.0,
+          "unit": "mg/dL",
+          "ref_range": "70.0 \u2013 100.0",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": ""
+        },
+        {
+          "name": "Postprandial Sugar",
+          "status": "High",
+          "value": 245.0,
+          "unit": "mg/dL",
+          "ref_range": "< 140",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": ""
+        },
+        {
+          "name": "HbA1c",
+          "status": "High",
+          "value": 8.2,
+          "unit": "%",
+          "ref_range": "4.0 \u2013 5.6",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": "HbA1c reflects your average blood sugar over 3 months. A raised value suggests blood sugar has been consistently elevated, which is important to address."
+        },
+        {
+          "name": "AST",
+          "status": "High",
+          "value": 28.0,
+          "unit": "\u00b5IU/mL",
+          "ref_range": "2.0 \u2013 25.0",
+          "direction": "higher",
+          "severity": "slightly",
+          "explanation": ""
+        }
+      ],
+      "lifestyle": [
+        "\ud83d\ude34 Get 7\u20138 hours of quality sleep each night",
+        "\ud83d\udca7 Stay hydrated \u2014 drink 8 glasses of water daily",
+        "\ud83e\udd57 Eat a balanced diet with plenty of fruits and vegetables",
+        "\ud83d\udeb6 Be physically active for at least 30 minutes most days",
+        "\ud83e\uddd8 Manage stress through mindfulness, hobbies, or social connection",
+        "\ud83e\ude7a Keep regular follow-up appointments with your doctor",
+        "\ud83d\udead Avoid smoking and limit alcohol"
+      ],
+      "total": 4,
+      "abnormal_count": 4,
+      "normal_count": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-22T17:34:32.679698",
+    "date": "2026-02-22",
+    "lab_data": [
+      {
+        "Test": "Total Cholesterol",
+        "Value": 245.0,
+        "Unit": "mg/dL",
+        "Reference Range": "< 200",
+        "Status": "High",
+        "Severity": "Moderate"
+      },
+      {
+        "Test": "HDL Cholesterol",
+        "Value": 38.0,
+        "Unit": "mg/dL",
+        "Reference Range": "50.0 \u2013 60",
+        "Status": "Low",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "LDL Cholesterol",
+        "Value": 165.0,
+        "Unit": "mg/dL",
+        "Reference Range": "< 100",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "Triglycerides",
+        "Value": 210.0,
+        "Unit": "mg/dL",
+        "Reference Range": "< 150",
+        "Status": "High",
+        "Severity": "Moderate"
+      },
+      {
+        "Test": "VLDL",
+        "Value": 42.0,
+        "Unit": "mg/dL",
+        "Reference Range": "5.0 \u2013 40.0",
+        "Status": "High",
+        "Severity": "Mild"
+      }
+    ],
+    "summary": {
+      "heading": "5 Values Need Attention",
+      "description": "Your report shows 5 values \u2014 0 are normal and 5 are outside the expected range. Please share this report with your doctor for proper evaluation.",
+      "findings": [
+        {
+          "name": "Total Cholesterol",
+          "status": "High",
+          "value": 245.0,
+          "unit": "mg/dL",
+          "ref_range": "< 200",
+          "direction": "higher",
+          "severity": "notably",
+          "explanation": "High total cholesterol may increase the risk of heart disease over time. A heart-healthy diet, exercise, and sometimes medication can help."
+        },
+        {
+          "name": "HDL Cholesterol",
+          "status": "Low",
+          "value": 38.0,
+          "unit": "mg/dL",
+          "ref_range": "50.0 \u2013 60",
+          "direction": "lower",
+          "severity": "significantly",
+          "explanation": "Low HDL may increase cardiovascular risk. Regular aerobic exercise and avoiding smoking can help raise HDL levels."
+        },
+        {
+          "name": "LDL Cholesterol",
+          "status": "High",
+          "value": 165.0,
+          "unit": "mg/dL",
+          "ref_range": "< 100",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": "High LDL ('bad') cholesterol is a key risk factor for heart disease. Reducing saturated fats and increasing fibre can help lower it."
+        },
+        {
+          "name": "Triglycerides",
+          "status": "High",
+          "value": 210.0,
+          "unit": "mg/dL",
+          "ref_range": "< 150",
+          "direction": "higher",
+          "severity": "notably",
+          "explanation": "High triglycerides are linked to heart and pancreas risk. Reducing sugar, refined carbs, and alcohol usually helps."
+        },
+        {
+          "name": "VLDL",
+          "status": "High",
+          "value": 42.0,
+          "unit": "mg/dL",
+          "ref_range": "5.0 \u2013 40.0",
+          "direction": "higher",
+          "severity": "slightly",
+          "explanation": ""
+        }
+      ],
+      "lifestyle": [
+        "\ud83e\udd66 Eat more soluble fibre (oats, apples, beans)",
+        "\ud83d\udc1f Include omega-3 rich foods (salmon, walnuts, flaxseeds)",
+        "\ud83e\uddc8 Reduce saturated and trans fats",
+        "\ud83d\udeb4 Exercise most days of the week",
+        "\ud83d\udead Avoid smoking",
+        "\ud83e\ude7a Keep regular follow-up appointments with your doctor",
+        "\ud83d\udead Avoid smoking and limit alcohol"
+      ],
+      "total": 5,
+      "abnormal_count": 5,
+      "normal_count": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-22T17:42:52.160288",
+    "date": "2026-02-22",
+    "lab_data": [
+      {
+        "Test": "Total Cholesterol",
+        "Value": 245.0,
+        "Unit": "mg/dL",
+        "Reference Range": "< 200",
+        "Status": "High",
+        "Severity": "Moderate"
+      },
+      {
+        "Test": "HDL Cholesterol",
+        "Value": 38.0,
+        "Unit": "mg/dL",
+        "Reference Range": "50.0 \u2013 60",
+        "Status": "Low",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "LDL Cholesterol",
+        "Value": 165.0,
+        "Unit": "mg/dL",
+        "Reference Range": "< 100",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "Triglycerides",
+        "Value": 210.0,
+        "Unit": "mg/dL",
+        "Reference Range": "< 150",
+        "Status": "High",
+        "Severity": "Moderate"
+      },
+      {
+        "Test": "VLDL",
+        "Value": 42.0,
+        "Unit": "mg/dL",
+        "Reference Range": "5.0 \u2013 40.0",
+        "Status": "High",
+        "Severity": "Mild"
+      }
+    ],
+    "summary": {
+      "heading": "5 Values Need Attention",
+      "description": "Your report shows 5 values \u2014 0 are normal and 5 are outside the expected range. Please share this report with your doctor for proper evaluation.",
+      "findings": [
+        {
+          "name": "Total Cholesterol",
+          "status": "High",
+          "value": 245.0,
+          "unit": "mg/dL",
+          "ref_range": "< 200",
+          "direction": "higher",
+          "severity": "notably",
+          "explanation": "High total cholesterol may increase the risk of heart disease over time. A heart-healthy diet, exercise, and sometimes medication can help."
+        },
+        {
+          "name": "HDL Cholesterol",
+          "status": "Low",
+          "value": 38.0,
+          "unit": "mg/dL",
+          "ref_range": "50.0 \u2013 60",
+          "direction": "lower",
+          "severity": "significantly",
+          "explanation": "Low HDL may increase cardiovascular risk. Regular aerobic exercise and avoiding smoking can help raise HDL levels."
+        },
+        {
+          "name": "LDL Cholesterol",
+          "status": "High",
+          "value": 165.0,
+          "unit": "mg/dL",
+          "ref_range": "< 100",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": "High LDL ('bad') cholesterol is a key risk factor for heart disease. Reducing saturated fats and increasing fibre can help lower it."
+        },
+        {
+          "name": "Triglycerides",
+          "status": "High",
+          "value": 210.0,
+          "unit": "mg/dL",
+          "ref_range": "< 150",
+          "direction": "higher",
+          "severity": "notably",
+          "explanation": "High triglycerides are linked to heart and pancreas risk. Reducing sugar, refined carbs, and alcohol usually helps."
+        },
+        {
+          "name": "VLDL",
+          "status": "High",
+          "value": 42.0,
+          "unit": "mg/dL",
+          "ref_range": "5.0 \u2013 40.0",
+          "direction": "higher",
+          "severity": "slightly",
+          "explanation": ""
+        }
+      ],
+      "lifestyle": [
+        "\ud83e\udd66 Eat more soluble fibre (oats, apples, beans)",
+        "\ud83d\udc1f Include omega-3 rich foods (salmon, walnuts, flaxseeds)",
+        "\ud83e\uddc8 Reduce saturated and trans fats",
+        "\ud83d\udeb4 Exercise most days of the week",
+        "\ud83d\udead Avoid smoking",
+        "\ud83e\ude7a Keep regular follow-up appointments with your doctor",
+        "\ud83d\udead Avoid smoking and limit alcohol"
+      ],
+      "total": 5,
+      "abnormal_count": 5,
+      "normal_count": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-22T17:50:30.829323",
+    "date": "2026-02-22",
+    "lab_data": [
+      {
+        "Test": "Total Cholesterol",
+        "Value": 245.0,
+        "Unit": "mg/dL",
+        "Reference Range": "< 200",
+        "Status": "High",
+        "Severity": "Moderate"
+      },
+      {
+        "Test": "HDL Cholesterol",
+        "Value": 38.0,
+        "Unit": "mg/dL",
+        "Reference Range": "50.0 \u2013 60",
+        "Status": "Low",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "LDL Cholesterol",
+        "Value": 165.0,
+        "Unit": "mg/dL",
+        "Reference Range": "< 100",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "Triglycerides",
+        "Value": 210.0,
+        "Unit": "mg/dL",
+        "Reference Range": "< 150",
+        "Status": "High",
+        "Severity": "Moderate"
+      },
+      {
+        "Test": "VLDL",
+        "Value": 42.0,
+        "Unit": "mg/dL",
+        "Reference Range": "5.0 \u2013 40.0",
+        "Status": "High",
+        "Severity": "Mild"
+      }
+    ],
+    "summary": {
+      "heading": "5 Values Need Attention",
+      "description": "Your report shows 5 values \u2014 0 are normal and 5 are outside the expected range. Please share this report with your doctor for proper evaluation.",
+      "findings": [
+        {
+          "name": "Total Cholesterol",
+          "status": "High",
+          "value": 245.0,
+          "unit": "mg/dL",
+          "ref_range": "< 200",
+          "direction": "higher",
+          "severity": "notably",
+          "explanation": "High total cholesterol may increase the risk of heart disease over time. A heart-healthy diet, exercise, and sometimes medication can help."
+        },
+        {
+          "name": "HDL Cholesterol",
+          "status": "Low",
+          "value": 38.0,
+          "unit": "mg/dL",
+          "ref_range": "50.0 \u2013 60",
+          "direction": "lower",
+          "severity": "significantly",
+          "explanation": "Low HDL may increase cardiovascular risk. Regular aerobic exercise and avoiding smoking can help raise HDL levels."
+        },
+        {
+          "name": "LDL Cholesterol",
+          "status": "High",
+          "value": 165.0,
+          "unit": "mg/dL",
+          "ref_range": "< 100",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": "High LDL ('bad') cholesterol is a key risk factor for heart disease. Reducing saturated fats and increasing fibre can help lower it."
+        },
+        {
+          "name": "Triglycerides",
+          "status": "High",
+          "value": 210.0,
+          "unit": "mg/dL",
+          "ref_range": "< 150",
+          "direction": "higher",
+          "severity": "notably",
+          "explanation": "High triglycerides are linked to heart and pancreas risk. Reducing sugar, refined carbs, and alcohol usually helps."
+        },
+        {
+          "name": "VLDL",
+          "status": "High",
+          "value": 42.0,
+          "unit": "mg/dL",
+          "ref_range": "5.0 \u2013 40.0",
+          "direction": "higher",
+          "severity": "slightly",
+          "explanation": ""
+        }
+      ],
+      "lifestyle": [
+        "\ud83e\udd66 Eat more soluble fibre (oats, apples, beans)",
+        "\ud83d\udc1f Include omega-3 rich foods (salmon, walnuts, flaxseeds)",
+        "\ud83e\uddc8 Reduce saturated and trans fats",
+        "\ud83d\udeb4 Exercise most days of the week",
+        "\ud83d\udead Avoid smoking",
+        "\ud83e\ude7a Keep regular follow-up appointments with your doctor",
+        "\ud83d\udead Avoid smoking and limit alcohol"
+      ],
+      "total": 5,
+      "abnormal_count": 5,
+      "normal_count": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-22T17:50:35.976213",
+    "date": "2026-02-22",
+    "lab_data": [
+      {
+        "Test": "Total Cholesterol",
+        "Value": 245.0,
+        "Unit": "mg/dL",
+        "Reference Range": "< 200",
+        "Status": "High",
+        "Severity": "Moderate"
+      },
+      {
+        "Test": "HDL Cholesterol",
+        "Value": 38.0,
+        "Unit": "mg/dL",
+        "Reference Range": "50.0 \u2013 60",
+        "Status": "Low",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "LDL Cholesterol",
+        "Value": 165.0,
+        "Unit": "mg/dL",
+        "Reference Range": "< 100",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "Triglycerides",
+        "Value": 210.0,
+        "Unit": "mg/dL",
+        "Reference Range": "< 150",
+        "Status": "High",
+        "Severity": "Moderate"
+      },
+      {
+        "Test": "VLDL",
+        "Value": 42.0,
+        "Unit": "mg/dL",
+        "Reference Range": "5.0 \u2013 40.0",
+        "Status": "High",
+        "Severity": "Mild"
+      }
+    ],
+    "summary": {
+      "heading": "5 Values Need Attention",
+      "description": "Your report shows 5 values \u2014 0 are normal and 5 are outside the expected range. Please share this report with your doctor for proper evaluation.",
+      "findings": [
+        {
+          "name": "Total Cholesterol",
+          "status": "High",
+          "value": 245.0,
+          "unit": "mg/dL",
+          "ref_range": "< 200",
+          "direction": "higher",
+          "severity": "notably",
+          "explanation": "High total cholesterol may increase the risk of heart disease over time. A heart-healthy diet, exercise, and sometimes medication can help."
+        },
+        {
+          "name": "HDL Cholesterol",
+          "status": "Low",
+          "value": 38.0,
+          "unit": "mg/dL",
+          "ref_range": "50.0 \u2013 60",
+          "direction": "lower",
+          "severity": "significantly",
+          "explanation": "Low HDL may increase cardiovascular risk. Regular aerobic exercise and avoiding smoking can help raise HDL levels."
+        },
+        {
+          "name": "LDL Cholesterol",
+          "status": "High",
+          "value": 165.0,
+          "unit": "mg/dL",
+          "ref_range": "< 100",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": "High LDL ('bad') cholesterol is a key risk factor for heart disease. Reducing saturated fats and increasing fibre can help lower it."
+        },
+        {
+          "name": "Triglycerides",
+          "status": "High",
+          "value": 210.0,
+          "unit": "mg/dL",
+          "ref_range": "< 150",
+          "direction": "higher",
+          "severity": "notably",
+          "explanation": "High triglycerides are linked to heart and pancreas risk. Reducing sugar, refined carbs, and alcohol usually helps."
+        },
+        {
+          "name": "VLDL",
+          "status": "High",
+          "value": 42.0,
+          "unit": "mg/dL",
+          "ref_range": "5.0 \u2013 40.0",
+          "direction": "higher",
+          "severity": "slightly",
+          "explanation": ""
+        }
+      ],
+      "lifestyle": [
+        "\ud83e\udd66 Eat more soluble fibre (oats, apples, beans)",
+        "\ud83d\udc1f Include omega-3 rich foods (salmon, walnuts, flaxseeds)",
+        "\ud83e\uddc8 Reduce saturated and trans fats",
+        "\ud83d\udeb4 Exercise most days of the week",
+        "\ud83d\udead Avoid smoking",
+        "\ud83e\ude7a Keep regular follow-up appointments with your doctor",
+        "\ud83d\udead Avoid smoking and limit alcohol"
+      ],
+      "total": 5,
+      "abnormal_count": 5,
+      "normal_count": 0
+    }
   }
 ]
