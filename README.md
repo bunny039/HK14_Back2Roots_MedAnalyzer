@@ -4,7 +4,7 @@
 
 ---
 ## Collaborately Made By Team Back2Roots
-> Bhouwmik Choudhury <br>
+> Bhoumik Choudhury <br>
 > Sameer Ranjan Nayak <br>
 > Pritish Behera <br>
 > Gudla Vivek <br>
