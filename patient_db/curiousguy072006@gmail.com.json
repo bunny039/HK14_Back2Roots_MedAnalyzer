@@ -1,0 +1,869 @@
+[
+  {
+    "timestamp": "2026-02-22T15:05:17.707692",
+    "date": "2026-02-22",
+    "lab_data": [
+      {
+        "Test": "Bilirubin Total",
+        "Value": 1.8,
+        "Unit": "mg/dL",
+        "Reference Range": "0.3 \u2013 1.2",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "Bilirubin Direct",
+        "Value": 0.6,
+        "Unit": "mg/dL",
+        "Reference Range": "0.0 \u2013 0.3",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "SGOT (AST)",
+        "Value": 65.0,
+        "Unit": "U/L",
+        "Reference Range": "5.0 \u2013 40.0",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "SGPT (ALT)",
+        "Value": 72.0,
+        "Unit": "U/L",
+        "Reference Range": "7.0 \u2013 56.0",
+        "Status": "High",
+        "Severity": "Moderate"
+      },
+      {
+        "Test": "Alkaline Phosphatase",
+        "Value": 140.0,
+        "Unit": "U/L",
+        "Reference Range": "44.0 \u2013 147.0",
+        "Status": "Normal",
+        "Severity": "None"
+      }
+    ],
+    "summary": {
+      "heading": "4 Values Need Attention",
+      "description": "Your report shows 5 values \u2014 1 are normal and 4 are outside the expected range. Please share this report with your doctor for proper evaluation.",
+      "findings": [
+        {
+          "name": "Bilirubin Total",
+          "status": "High",
+          "value": 1.8,
+          "unit": "mg/dL",
+          "ref_range": "0.3 \u2013 1.2",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": ""
+        },
+        {
+          "name": "Bilirubin Direct",
+          "status": "High",
+          "value": 0.6,
+          "unit": "mg/dL",
+          "ref_range": "0.0 \u2013 0.3",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": ""
+        },
+        {
+          "name": "SGOT (AST)",
+          "status": "High",
+          "value": 65.0,
+          "unit": "U/L",
+          "ref_range": "5.0 \u2013 40.0",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": ""
+        },
+        {
+          "name": "SGPT (ALT)",
+          "status": "High",
+          "value": 72.0,
+          "unit": "U/L",
+          "ref_range": "7.0 \u2013 56.0",
+          "direction": "higher",
+          "severity": "notably",
+          "explanation": ""
+        }
+      ],
+      "lifestyle": [
+        "\ud83d\ude34 Get 7\u20138 hours of quality sleep each night",
+        "\ud83d\udca7 Stay hydrated \u2014 drink 8 glasses of water daily",
+        "\ud83e\udd57 Eat a balanced diet with plenty of fruits and vegetables",
+        "\ud83d\udeb6 Be physically active for at least 30 minutes most days",
+        "\ud83e\uddd8 Manage stress through mindfulness, hobbies, or social connection",
+        "\ud83e\ude7a Keep regular follow-up appointments with your doctor",
+        "\ud83d\udead Avoid smoking and limit alcohol"
+      ],
+      "total": 5,
+      "abnormal_count": 4,
+      "normal_count": 1
+    }
+  },
+  {
+    "timestamp": "2026-02-22T15:10:19.646655",
+    "date": "2026-02-22",
+    "lab_data": [
+      {
+        "Test": "Blood Sugar",
+        "Value": 132.0,
+        "Unit": "mg/dL",
+        "Reference Range": "70.0 \u2013 99.0",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "Random Blood Sugar",
+        "Value": 210.0,
+        "Unit": "mg/dL",
+        "Reference Range": "70 \u2013 140.0",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "HbA1c",
+        "Value": 7.4,
+        "Unit": "%",
+        "Reference Range": "4.0 \u2013 5.7",
+        "Status": "High",
+        "Severity": "Severe"
+      }
+    ],
+    "summary": {
+      "heading": "3 Values Need Attention",
+      "description": "Your report shows 3 values \u2014 0 are normal and 3 are outside the expected range. Please share this report with your doctor for proper evaluation.",
+      "findings": [
+        {
+          "name": "Blood Sugar",
+          "status": "High",
+          "value": 132.0,
+          "unit": "mg/dL",
+          "ref_range": "70.0 \u2013 99.0",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": ""
+        },
+        {
+          "name": "Random Blood Sugar",
+          "status": "High",
+          "value": 210.0,
+          "unit": "mg/dL",
+          "ref_range": "70 \u2013 140.0",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": ""
+        },
+        {
+          "name": "HbA1c",
+          "status": "High",
+          "value": 7.4,
+          "unit": "%",
+          "ref_range": "4.0 \u2013 5.7",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": "HbA1c reflects your average blood sugar over 3 months. A raised value suggests blood sugar has been consistently elevated, which is important to address."
+        }
+      ],
+      "lifestyle": [
+        "\ud83d\ude34 Get 7\u20138 hours of quality sleep each night",
+        "\ud83d\udca7 Stay hydrated \u2014 drink 8 glasses of water daily",
+        "\ud83e\udd57 Eat a balanced diet with plenty of fruits and vegetables",
+        "\ud83d\udeb6 Be physically active for at least 30 minutes most days",
+        "\ud83e\uddd8 Manage stress through mindfulness, hobbies, or social connection",
+        "\ud83e\ude7a Keep regular follow-up appointments with your doctor",
+        "\ud83d\udead Avoid smoking and limit alcohol"
+      ],
+      "total": 3,
+      "abnormal_count": 3,
+      "normal_count": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-22T15:15:54.668015",
+    "date": "2026-02-22",
+    "lab_data": [
+      {
+        "Test": "Blood Sugar",
+        "Value": 162.0,
+        "Unit": "mg/dL",
+        "Reference Range": "70.0 \u2013 100.0",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "Postprandial Sugar",
+        "Value": 245.0,
+        "Unit": "mg/dL",
+        "Reference Range": "< 140",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "HbA1c",
+        "Value": 8.2,
+        "Unit": "%",
+        "Reference Range": "4.0 \u2013 5.6",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "AST",
+        "Value": 28.0,
+        "Unit": "\u00b5IU/mL",
+        "Reference Range": "2.0 \u2013 25.0",
+        "Status": "High",
+        "Severity": "Mild"
+      }
+    ],
+    "summary": {
+      "heading": "4 Values Need Attention",
+      "description": "Your report shows 4 values \u2014 0 are normal and 4 are outside the expected range. Please share this report with your doctor for proper evaluation.",
+      "findings": [
+        {
+          "name": "Blood Sugar",
+          "status": "High",
+          "value": 162.0,
+          "unit": "mg/dL",
+          "ref_range": "70.0 \u2013 100.0",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": ""
+        },
+        {
+          "name": "Postprandial Sugar",
+          "status": "High",
+          "value": 245.0,
+          "unit": "mg/dL",
+          "ref_range": "< 140",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": ""
+        },
+        {
+          "name": "HbA1c",
+          "status": "High",
+          "value": 8.2,
+          "unit": "%",
+          "ref_range": "4.0 \u2013 5.6",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": "HbA1c reflects your average blood sugar over 3 months. A raised value suggests blood sugar has been consistently elevated, which is important to address."
+        },
+        {
+          "name": "AST",
+          "status": "High",
+          "value": 28.0,
+          "unit": "\u00b5IU/mL",
+          "ref_range": "2.0 \u2013 25.0",
+          "direction": "higher",
+          "severity": "slightly",
+          "explanation": ""
+        }
+      ],
+      "lifestyle": [
+        "\ud83d\ude34 Get 7\u20138 hours of quality sleep each night",
+        "\ud83d\udca7 Stay hydrated \u2014 drink 8 glasses of water daily",
+        "\ud83e\udd57 Eat a balanced diet with plenty of fruits and vegetables",
+        "\ud83d\udeb6 Be physically active for at least 30 minutes most days",
+        "\ud83e\uddd8 Manage stress through mindfulness, hobbies, or social connection",
+        "\ud83e\ude7a Keep regular follow-up appointments with your doctor",
+        "\ud83d\udead Avoid smoking and limit alcohol"
+      ],
+      "total": 4,
+      "abnormal_count": 4,
+      "normal_count": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-22T15:26:56.791357",
+    "date": "2026-02-22",
+    "lab_data": [
+      {
+        "Test": "Hemoglobin",
+        "Value": 10.2,
+        "Unit": "g/dL",
+        "Reference Range": "13.0 \u2013 17.0",
+        "Status": "Low",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "Red Blood Cells",
+        "Value": 4.2,
+        "Unit": "million/\u00b5L",
+        "Reference Range": "4.5 \u2013 5.9",
+        "Status": "Low",
+        "Severity": "Moderate"
+      },
+      {
+        "Test": "White Blood Cells",
+        "Value": 12.0,
+        "Unit": "K/\u00b5L",
+        "Reference Range": "4.0 \u2013 11.0",
+        "Status": "High",
+        "Severity": "Mild"
+      },
+      {
+        "Test": "Platelets",
+        "Value": 2.8,
+        "Unit": "lakh/\u00b5L",
+        "Reference Range": "1.5 \u2013 4.5",
+        "Status": "Normal",
+        "Severity": "None"
+      },
+      {
+        "Test": "Hematocrit",
+        "Value": 32.0,
+        "Unit": "%",
+        "Reference Range": "40.0 \u2013 50.0",
+        "Status": "Low",
+        "Severity": "Severe"
+      }
+    ],
+    "summary": {
+      "heading": "4 Values Need Attention",
+      "description": "Your report shows 5 values \u2014 1 are normal and 4 are outside the expected range. Please share this report with your doctor for proper evaluation.",
+      "findings": [
+        {
+          "name": "Hemoglobin",
+          "status": "Low",
+          "value": 10.2,
+          "unit": "g/dL",
+          "ref_range": "13.0 \u2013 17.0",
+          "direction": "lower",
+          "severity": "significantly",
+          "explanation": "Low hemoglobin is the most common sign of anaemia. You may feel tired, short of breath, or dizzy. Iron, B12, or folate deficiency are common causes. A doctor can determine the exact cause and recommend treatment."
+        },
+        {
+          "name": "Red Blood Cells",
+          "status": "Low",
+          "value": 4.2,
+          "unit": "million/\u00b5L",
+          "ref_range": "4.5 \u2013 5.9",
+          "direction": "lower",
+          "severity": "notably",
+          "explanation": ""
+        },
+        {
+          "name": "White Blood Cells",
+          "status": "High",
+          "value": 12.0,
+          "unit": "K/\u00b5L",
+          "ref_range": "4.0 \u2013 11.0",
+          "direction": "higher",
+          "severity": "slightly",
+          "explanation": ""
+        },
+        {
+          "name": "Hematocrit",
+          "status": "Low",
+          "value": 32.0,
+          "unit": "%",
+          "ref_range": "40.0 \u2013 50.0",
+          "direction": "lower",
+          "severity": "significantly",
+          "explanation": ""
+        }
+      ],
+      "lifestyle": [
+        "\ud83e\udd69 Eat iron-rich foods (spinach, lean red meat, lentils)",
+        "\ud83c\udf4a Pair iron foods with vitamin C to boost absorption",
+        "\ud83e\ude7a Ask your doctor about iron supplements if needed",
+        "\ud83e\udd5a Include B12 sources (eggs, dairy, fish)",
+        "\ud83e\ude7a Keep regular follow-up appointments with your doctor",
+        "\ud83d\udead Avoid smoking and limit alcohol"
+      ],
+      "total": 5,
+      "abnormal_count": 4,
+      "normal_count": 1
+    }
+  },
+  {
+    "timestamp": "2026-02-22T15:32:29.904534",
+    "date": "2026-02-22",
+    "lab_data": [
+      {
+        "Test": "Blood Sugar",
+        "Value": 162.0,
+        "Unit": "mg/dL",
+        "Reference Range": "70.0 \u2013 100.0",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "Postprandial Sugar",
+        "Value": 245.0,
+        "Unit": "mg/dL",
+        "Reference Range": "< 140",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "HbA1c",
+        "Value": 8.2,
+        "Unit": "%",
+        "Reference Range": "4.0 \u2013 5.6",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "AST",
+        "Value": 28.0,
+        "Unit": "\u00b5IU/mL",
+        "Reference Range": "2.0 \u2013 25.0",
+        "Status": "High",
+        "Severity": "Mild"
+      }
+    ],
+    "summary": {
+      "heading": "4 Values Need Attention",
+      "description": "Your report shows 4 values \u2014 0 are normal and 4 are outside the expected range. Please share this report with your doctor for proper evaluation.",
+      "findings": [
+        {
+          "name": "Blood Sugar",
+          "status": "High",
+          "value": 162.0,
+          "unit": "mg/dL",
+          "ref_range": "70.0 \u2013 100.0",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": ""
+        },
+        {
+          "name": "Postprandial Sugar",
+          "status": "High",
+          "value": 245.0,
+          "unit": "mg/dL",
+          "ref_range": "< 140",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": ""
+        },
+        {
+          "name": "HbA1c",
+          "status": "High",
+          "value": 8.2,
+          "unit": "%",
+          "ref_range": "4.0 \u2013 5.6",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": "HbA1c reflects your average blood sugar over 3 months. A raised value suggests blood sugar has been consistently elevated, which is important to address."
+        },
+        {
+          "name": "AST",
+          "status": "High",
+          "value": 28.0,
+          "unit": "\u00b5IU/mL",
+          "ref_range": "2.0 \u2013 25.0",
+          "direction": "higher",
+          "severity": "slightly",
+          "explanation": ""
+        }
+      ],
+      "lifestyle": [
+        "\ud83d\ude34 Get 7\u20138 hours of quality sleep each night",
+        "\ud83d\udca7 Stay hydrated \u2014 drink 8 glasses of water daily",
+        "\ud83e\udd57 Eat a balanced diet with plenty of fruits and vegetables",
+        "\ud83d\udeb6 Be physically active for at least 30 minutes most days",
+        "\ud83e\uddd8 Manage stress through mindfulness, hobbies, or social connection",
+        "\ud83e\ude7a Keep regular follow-up appointments with your doctor",
+        "\ud83d\udead Avoid smoking and limit alcohol"
+      ],
+      "total": 4,
+      "abnormal_count": 4,
+      "normal_count": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-22T15:38:11.346381",
+    "date": "2026-02-22",
+    "lab_data": [
+      {
+        "Test": "Blood Sugar",
+        "Value": 132.0,
+        "Unit": "mg/dL",
+        "Reference Range": "70.0 \u2013 99.0",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "Random Blood Sugar",
+        "Value": 210.0,
+        "Unit": "mg/dL",
+        "Reference Range": "70 \u2013 140.0",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "HbA1c",
+        "Value": 7.4,
+        "Unit": "%",
+        "Reference Range": "4.0 \u2013 5.7",
+        "Status": "High",
+        "Severity": "Severe"
+      }
+    ],
+    "summary": {
+      "heading": "3 Values Need Attention",
+      "description": "Your report shows 3 values \u2014 0 are normal and 3 are outside the expected range. Please share this report with your doctor for proper evaluation.",
+      "findings": [
+        {
+          "name": "Blood Sugar",
+          "status": "High",
+          "value": 132.0,
+          "unit": "mg/dL",
+          "ref_range": "70.0 \u2013 99.0",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": ""
+        },
+        {
+          "name": "Random Blood Sugar",
+          "status": "High",
+          "value": 210.0,
+          "unit": "mg/dL",
+          "ref_range": "70 \u2013 140.0",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": ""
+        },
+        {
+          "name": "HbA1c",
+          "status": "High",
+          "value": 7.4,
+          "unit": "%",
+          "ref_range": "4.0 \u2013 5.7",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": "HbA1c reflects your average blood sugar over 3 months. A raised value suggests blood sugar has been consistently elevated, which is important to address."
+        }
+      ],
+      "lifestyle": [
+        "\ud83d\ude34 Get 7\u20138 hours of quality sleep each night",
+        "\ud83d\udca7 Stay hydrated \u2014 drink 8 glasses of water daily",
+        "\ud83e\udd57 Eat a balanced diet with plenty of fruits and vegetables",
+        "\ud83d\udeb6 Be physically active for at least 30 minutes most days",
+        "\ud83e\uddd8 Manage stress through mindfulness, hobbies, or social connection",
+        "\ud83e\ude7a Keep regular follow-up appointments with your doctor",
+        "\ud83d\udead Avoid smoking and limit alcohol"
+      ],
+      "total": 3,
+      "abnormal_count": 3,
+      "normal_count": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-22T15:41:54.149268",
+    "date": "2026-02-22",
+    "lab_data": [
+      {
+        "Test": "Blood Sugar",
+        "Value": 132.0,
+        "Unit": "mg/dL",
+        "Reference Range": "70.0 \u2013 99.0",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "Random Blood Sugar",
+        "Value": 210.0,
+        "Unit": "mg/dL",
+        "Reference Range": "70 \u2013 140.0",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "HbA1c",
+        "Value": 7.4,
+        "Unit": "%",
+        "Reference Range": "4.0 \u2013 5.7",
+        "Status": "High",
+        "Severity": "Severe"
+      }
+    ],
+    "summary": {
+      "heading": "3 Values Need Attention",
+      "description": "Your report shows 3 values \u2014 0 are normal and 3 are outside the expected range. Please share this report with your doctor for proper evaluation.",
+      "findings": [
+        {
+          "name": "Blood Sugar",
+          "status": "High",
+          "value": 132.0,
+          "unit": "mg/dL",
+          "ref_range": "70.0 \u2013 99.0",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": ""
+        },
+        {
+          "name": "Random Blood Sugar",
+          "status": "High",
+          "value": 210.0,
+          "unit": "mg/dL",
+          "ref_range": "70 \u2013 140.0",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": ""
+        },
+        {
+          "name": "HbA1c",
+          "status": "High",
+          "value": 7.4,
+          "unit": "%",
+          "ref_range": "4.0 \u2013 5.7",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": "HbA1c reflects your average blood sugar over 3 months. A raised value suggests blood sugar has been consistently elevated, which is important to address."
+        }
+      ],
+      "lifestyle": [
+        "\ud83d\ude34 Get 7\u20138 hours of quality sleep each night",
+        "\ud83d\udca7 Stay hydrated \u2014 drink 8 glasses of water daily",
+        "\ud83e\udd57 Eat a balanced diet with plenty of fruits and vegetables",
+        "\ud83d\udeb6 Be physically active for at least 30 minutes most days",
+        "\ud83e\uddd8 Manage stress through mindfulness, hobbies, or social connection",
+        "\ud83e\ude7a Keep regular follow-up appointments with your doctor",
+        "\ud83d\udead Avoid smoking and limit alcohol"
+      ],
+      "total": 3,
+      "abnormal_count": 3,
+      "normal_count": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-22T15:43:29.843953",
+    "date": "2026-02-22",
+    "lab_data": [
+      {
+        "Test": "Blood Sugar",
+        "Value": 132.0,
+        "Unit": "mg/dL",
+        "Reference Range": "70.0 \u2013 99.0",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "Random Blood Sugar",
+        "Value": 210.0,
+        "Unit": "mg/dL",
+        "Reference Range": "70 \u2013 140.0",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "HbA1c",
+        "Value": 7.4,
+        "Unit": "%",
+        "Reference Range": "4.0 \u2013 5.7",
+        "Status": "High",
+        "Severity": "Severe"
+      }
+    ],
+    "summary": {
+      "heading": "3 Values Need Attention",
+      "description": "Your report shows 3 values \u2014 0 are normal and 3 are outside the expected range. Please share this report with your doctor for proper evaluation.",
+      "findings": [
+        {
+          "name": "Blood Sugar",
+          "status": "High",
+          "value": 132.0,
+          "unit": "mg/dL",
+          "ref_range": "70.0 \u2013 99.0",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": ""
+        },
+        {
+          "name": "Random Blood Sugar",
+          "status": "High",
+          "value": 210.0,
+          "unit": "mg/dL",
+          "ref_range": "70 \u2013 140.0",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": ""
+        },
+        {
+          "name": "HbA1c",
+          "status": "High",
+          "value": 7.4,
+          "unit": "%",
+          "ref_range": "4.0 \u2013 5.7",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": "HbA1c reflects your average blood sugar over 3 months. A raised value suggests blood sugar has been consistently elevated, which is important to address."
+        }
+      ],
+      "lifestyle": [
+        "\ud83d\ude34 Get 7\u20138 hours of quality sleep each night",
+        "\ud83d\udca7 Stay hydrated \u2014 drink 8 glasses of water daily",
+        "\ud83e\udd57 Eat a balanced diet with plenty of fruits and vegetables",
+        "\ud83d\udeb6 Be physically active for at least 30 minutes most days",
+        "\ud83e\uddd8 Manage stress through mindfulness, hobbies, or social connection",
+        "\ud83e\ude7a Keep regular follow-up appointments with your doctor",
+        "\ud83d\udead Avoid smoking and limit alcohol"
+      ],
+      "total": 3,
+      "abnormal_count": 3,
+      "normal_count": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-22T15:53:29.158700",
+    "date": "2026-02-22",
+    "lab_data": [
+      {
+        "Test": "Blood Sugar",
+        "Value": 132.0,
+        "Unit": "mg/dL",
+        "Reference Range": "70.0 \u2013 99.0",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "Random Blood Sugar",
+        "Value": 210.0,
+        "Unit": "mg/dL",
+        "Reference Range": "70 \u2013 140.0",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "HbA1c",
+        "Value": 7.4,
+        "Unit": "%",
+        "Reference Range": "4.0 \u2013 5.7",
+        "Status": "High",
+        "Severity": "Severe"
+      }
+    ],
+    "summary": {
+      "heading": "3 Values Need Attention",
+      "description": "Your report shows 3 values \u2014 0 are normal and 3 are outside the expected range. Please share this report with your doctor for proper evaluation.",
+      "findings": [
+        {
+          "name": "Blood Sugar",
+          "status": "High",
+          "value": 132.0,
+          "unit": "mg/dL",
+          "ref_range": "70.0 \u2013 99.0",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": ""
+        },
+        {
+          "name": "Random Blood Sugar",
+          "status": "High",
+          "value": 210.0,
+          "unit": "mg/dL",
+          "ref_range": "70 \u2013 140.0",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": ""
+        },
+        {
+          "name": "HbA1c",
+          "status": "High",
+          "value": 7.4,
+          "unit": "%",
+          "ref_range": "4.0 \u2013 5.7",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": "HbA1c reflects your average blood sugar over 3 months. A raised value suggests blood sugar has been consistently elevated, which is important to address."
+        }
+      ],
+      "lifestyle": [
+        "\ud83d\ude34 Get 7\u20138 hours of quality sleep each night",
+        "\ud83d\udca7 Stay hydrated \u2014 drink 8 glasses of water daily",
+        "\ud83e\udd57 Eat a balanced diet with plenty of fruits and vegetables",
+        "\ud83d\udeb6 Be physically active for at least 30 minutes most days",
+        "\ud83e\uddd8 Manage stress through mindfulness, hobbies, or social connection",
+        "\ud83e\ude7a Keep regular follow-up appointments with your doctor",
+        "\ud83d\udead Avoid smoking and limit alcohol"
+      ],
+      "total": 3,
+      "abnormal_count": 3,
+      "normal_count": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-22T16:09:02.424416",
+    "date": "2026-02-22",
+    "lab_data": [
+      {
+        "Test": "Blood Sugar",
+        "Value": 132.0,
+        "Unit": "mg/dL",
+        "Reference Range": "70.0 \u2013 99.0",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "Random Blood Sugar",
+        "Value": 210.0,
+        "Unit": "mg/dL",
+        "Reference Range": "70 \u2013 140.0",
+        "Status": "High",
+        "Severity": "Severe"
+      },
+      {
+        "Test": "HbA1c",
+        "Value": 7.4,
+        "Unit": "%",
+        "Reference Range": "4.0 \u2013 5.7",
+        "Status": "High",
+        "Severity": "Severe"
+      }
+    ],
+    "summary": {
+      "heading": "3 Values Need Attention",
+      "description": "Your report shows 3 values \u2014 0 are normal and 3 are outside the expected range. Please share this report with your doctor for proper evaluation.",
+      "findings": [
+        {
+          "name": "Blood Sugar",
+          "status": "High",
+          "value": 132.0,
+          "unit": "mg/dL",
+          "ref_range": "70.0 \u2013 99.0",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": ""
+        },
+        {
+          "name": "Random Blood Sugar",
+          "status": "High",
+          "value": 210.0,
+          "unit": "mg/dL",
+          "ref_range": "70 \u2013 140.0",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": ""
+        },
+        {
+          "name": "HbA1c",
+          "status": "High",
+          "value": 7.4,
+          "unit": "%",
+          "ref_range": "4.0 \u2013 5.7",
+          "direction": "higher",
+          "severity": "significantly",
+          "explanation": "HbA1c reflects your average blood sugar over 3 months. A raised value suggests blood sugar has been consistently elevated, which is important to address."
+        }
+      ],
+      "lifestyle": [
+        "\ud83d\ude34 Get 7\u20138 hours of quality sleep each night",
+        "\ud83d\udca7 Stay hydrated \u2014 drink 8 glasses of water daily",
+        "\ud83e\udd57 Eat a balanced diet with plenty of fruits and vegetables",
+        "\ud83d\udeb6 Be physically active for at least 30 minutes most days",
+        "\ud83e\uddd8 Manage stress through mindfulness, hobbies, or social connection",
+        "\ud83e\ude7a Keep regular follow-up appointments with your doctor",
+        "\ud83d\udead Avoid smoking and limit alcohol"
+      ],
+      "total": 3,
+      "abnormal_count": 3,
+      "normal_count": 0
+    }
+  }
+]

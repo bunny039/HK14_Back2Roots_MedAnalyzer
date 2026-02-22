@@ -20,6 +20,8 @@ pip install -r requirements.txt
 This will install:
 - **streamlit** - Web app framework
 - **google-generativeai** - Gemini API client
+- **google-auth-oauthlib** - Google Auth for Gmail API
+- **google-api-python-client** - Google API Client
 - **pandas** - Data handling
 - **numpy** - Numerical computing
 - **Pillow** - Image processing

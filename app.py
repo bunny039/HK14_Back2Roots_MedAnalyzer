@@ -20,6 +20,17 @@ import os
 import io
 import requests
 import base64
+import sqlite3
+import hashlib
+import ssl
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.application import MIMEApplication
+from google.auth.transport.requests import Request
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
 from datetime import datetime
 from dotenv import load_dotenv
 load_dotenv()
@@ -49,12 +60,98 @@ st.markdown(MAIN_CSS, unsafe_allow_html=True)
 
 
 # ══════════════════════════════════════════════════════════════════════
+# PERSISTENCE LAYER (PATIENT HISTORY)
+# ══════════════════════════════════════════════════════════════════════
+PATIENT_DB_FOLDER = "patient_db"
+os.makedirs(PATIENT_DB_FOLDER, exist_ok=True)
+
+def save_patient_history(email: str, df: pd.DataFrame, summary: dict):
+    """Save the current report to the patient's JSON history file."""
+    if not email: return
+    
+    file_path = os.path.join(PATIENT_DB_FOLDER, f"{email}.json")
+    
+    # Prepare record
+    record = {
+        "timestamp": datetime.now().isoformat(),
+        "date": datetime.now().strftime("%Y-%m-%d"),
+        "lab_data": df.to_dict(orient="records"),
+        "summary": summary
+    }
+    
+    history = []
+    if os.path.exists(file_path):
+        try:
+            with open(file_path, "r") as f:
+                history = json.load(f)
+        except:
+            history = []
+            
+    history.append(record)
+    with open(file_path, "w") as f:
+        json.dump(history, f, indent=2)
+
+def load_patient_history(email: str):
+    """Load patient's history from JSON file."""
+    if not email: return []
+    file_path = os.path.join(PATIENT_DB_FOLDER, f"{email}.json")
+    if os.path.exists(file_path):
+        try:
+            with open(file_path, "r") as f:
+                return json.load(f)
+        except:
+            return []
+    return []
+
+
+# ══════════════════════════════════════════════════════════════════════
+# AUTHENTICATION LAYER (SQLITE)
+# ══════════════════════════════════════════════════════════════════════
+
+def init_user_db():
+    """Initialize the SQLite database for user credentials."""
+    conn = sqlite3.connect('users.db')
+    c = conn.cursor()
+    c.execute('CREATE TABLE IF NOT EXISTS users (email TEXT PRIMARY KEY, password TEXT, name TEXT)')
+    conn.commit()
+    conn.close()
+
+def hash_password(password):
+    """Hash a password for storing."""
+    return hashlib.sha256(str.encode(password)).hexdigest()
+
+def create_user(email, password, name):
+    """Create a new user in the database."""
+    conn = sqlite3.connect('users.db')
+    c = conn.cursor()
+    try:
+        c.execute('INSERT INTO users (email, password, name) VALUES (?, ?, ?)', 
+                  (email, hash_password(password), name))
+        conn.commit()
+        return True
+    except sqlite3.IntegrityError:
+        return False
+    finally:
+        conn.close()
+
+def authenticate_user(email, password):
+    """Check credentials against database."""
+    conn = sqlite3.connect('users.db')
+    c = conn.cursor()
+    c.execute('SELECT email, name FROM users WHERE email = ? AND password = ?', 
+              (email, hash_password(password)))
+    user = c.fetchone()
+    conn.close()
+    return user # Returns (email, name) or None
+
+
+# ══════════════════════════════════════════════════════════════════════
 # SESSION STATE
 # ══════════════════════════════════════════════════════════════════════
 
 def _init_state():
     defaults = {
-        "page":         "Dashboard",
+        "page":         "Login",
         "raw_text":     "",
         "ocr_method":   "",
         "cleaned_text": "",
@@ -72,6 +169,8 @@ def _init_state():
         "doctor_notes": "",
         "prescriptions": [],
         "doctor_verified": False,
+        "doctor_flagged": False,
+        "flag_reason": "",
         "doctor_name": "",
         "doctor_license": "",
         "doctor_hospital": "",
@@ -91,7 +190,11 @@ def _init_state():
         # UI Language Settings
         "ui_language": "English",
         # API Key storage
-        "api_key": ""
+        "api_key": "",
+        # User Auth
+        "user_email": "",
+        "user_name": "",
+        "is_logged_in": False
     }
     for k, v in defaults.items():
         if k not in st.session_state:
@@ -135,6 +238,7 @@ TRANSLATIONS = {
         "Upload Report": "Upload Report",
         "Explanation": "Explanation",
         "Doctor Mode": "Doctor Mode",
+        "Share Report": "Share Report",
         "Settings": "Settings",
         
         # Sidebar
@@ -1103,15 +1207,18 @@ with st.sidebar:
     st.markdown("---")
 
     # Navigation
-    st.markdown('<div class="nav-label">Navigation</div>', unsafe_allow_html=True)
-
-    nav_items = [
-        (_t("Dashboard"),     "📊"),
-        (_t("Upload Report"), "📁"),
-        (_t("Explanation"),   "💡"),
-        (_t("Doctor Mode"),   "🩺"),
-        (_t("Settings"),      "⚙️"),
-    ]
+    if not st.session_state.get("is_logged_in", False):
+        nav_items = []
+    else:
+        st.markdown('<div class="nav-label">Navigation</div>', unsafe_allow_html=True)
+        nav_items = [
+            (_t("Dashboard"),     "📊"),
+            (_t("Upload Report"), "📁"),
+            (_t("Explanation"),   "💡"),
+            (_t("Doctor Mode"),   "🩺"),
+            (_t("Share Report"),  "✉️"),
+            (_t("Settings"),      "⚙️"),
+        ]
 
     for page_name, icon in nav_items:
         is_active = st.session_state.page == page_name
@@ -1120,65 +1227,72 @@ with st.sidebar:
                      use_container_width=True, type=btn_type):
             st.session_state.page = page_name
             st.rerun()
+            
+    if st.session_state.get("is_logged_in", False):
+        if st.button("Log Out", key="logout_btn", type="secondary", use_container_width=True):
+            st.session_state.is_logged_in = False
+            st.session_state.page = "Login"
+            st.rerun()
 
     # Patient info
-    st.markdown('<div class="nav-label" style="margin-top:20px;">Patient</div>',
-                unsafe_allow_html=True)
-    st.session_state.patient_age = st.number_input(
-        "Age", min_value=1, max_value=120,
-        value=st.session_state.patient_age,
-        label_visibility="visible",
-    )
-    st.session_state.patient_gender = st.selectbox(
-        "Gender",
-        ["Not specified", "Male", "Female", "Other"],
-        index=["Not specified", "Male", "Female", "Other"].index(
-            st.session_state.patient_gender
-        ),
-    )
+    if st.session_state.get("is_logged_in", False):
+        st.markdown('<div class="nav-label" style="margin-top:20px;">Patient</div>',
+                    unsafe_allow_html=True)
+        st.session_state.patient_age = st.number_input(
+            "Age", min_value=1, max_value=120,
+            value=st.session_state.patient_age,
+            label_visibility="visible",
+        )
+        st.session_state.patient_gender = st.selectbox(
+            "Gender",
+            ["Not specified", "Male", "Female", "Other"],
+            index=["Not specified", "Male", "Female", "Other"].index(
+                st.session_state.patient_gender
+            ),
+        )
 
-    st.markdown("---")
+        st.markdown("---")
 
-    # Doctor mode toggle
-    st.session_state.doctor_mode = st.toggle(
-        "🩺 Doctor Mode",
-        value=st.session_state.doctor_mode,
-        help="Reveals raw extracted text, JSON data, and diagnostic detail.",
-    )
+        # Doctor mode toggle
+        st.session_state.doctor_mode = st.toggle(
+            "🩺 Doctor Mode",
+            value=st.session_state.doctor_mode,
+            help="Reveals raw extracted text, JSON data, and diagnostic detail.",
+        )
 
-    # Voice & Language Settings
-    st.markdown('<div class="nav-label" style="margin-top:20px;">🔊 Voice & Language (Sarvam AI)</div>',
-                unsafe_allow_html=True)
-    st.session_state.voice_language = st.selectbox(
-        "Select Language",
-        list(LANGUAGE_CODES.keys()),
-        index=list(LANGUAGE_CODES.keys()).index(st.session_state.voice_language) 
-            if st.session_state.voice_language in LANGUAGE_CODES else 0,
-        help="Choose language for text-to-speech (10 Indian languages supported)",
-        key="language_selector"
-    )
-    
-    # Sarvam API Key Setup
-    api_key_status = "✅ Configured" if os.environ.get("SARVAM_API_KEY") else "❌ Not Set"
-    
-    # Language verification display
-    lang_code = LANGUAGE_CODES.get(st.session_state.voice_language, "en")
-    st.info(f"""
-    **Language Selected:** {st.session_state.voice_language} (Code: {lang_code})
-    **API Status:** {api_key_status}
-    
-    🇮🇳 **Indian Languages Supported:**
-    - Hindi, Tamil, Telugu, Kannada, Malayalam
-    - Marathi, Gujarati, Bengali, Punjabi, Urdu
-    
-    🔑 **To use Sarvam AI:**
-    ```
-    $env:SARVAM_API_KEY = "your_sarvam_api_key"
-    ```
-    Get free API key: sarvam.ai
-    """)
+        # Voice & Language Settings
+        st.markdown('<div class="nav-label" style="margin-top:20px;">🔊 Voice & Language (Sarvam AI)</div>',
+                    unsafe_allow_html=True)
+        st.session_state.voice_language = st.selectbox(
+            "Select Language",
+            list(LANGUAGE_CODES.keys()),
+            index=list(LANGUAGE_CODES.keys()).index(st.session_state.voice_language) 
+                if st.session_state.voice_language in LANGUAGE_CODES else 0,
+            help="Choose language for text-to-speech (10 Indian languages supported)",
+            key="language_selector"
+        )
+        
+        # Sarvam API Key Setup
+        api_key_status = "✅ Configured" if os.environ.get("SARVAM_API_KEY") else "❌ Not Set"
+        
+        # Language verification display
+        lang_code = LANGUAGE_CODES.get(st.session_state.voice_language, "en")
+        st.info(f"""
+        **Language Selected:** {st.session_state.voice_language} (Code: {lang_code})
+        **API Status:** {api_key_status}
+        
+        🇮🇳 **Indian Languages Supported:**
+        - Hindi, Tamil, Telugu, Kannada, Malayalam
+        - Marathi, Gujarati, Bengali, Punjabi, Urdu
+        
+        🔑 **To use Sarvam AI:**
+        ```
+        $env:SARVAM_API_KEY = "your_sarvam_api_key"
+        ```
+        Get free API key: sarvam.ai
+        """)
 
-    st.markdown("---")
+        st.markdown("---")
     if st.session_state.stage > 0:
         stage = st.session_state.stage
         steps = [
@@ -1593,11 +1707,13 @@ def _chat_panel():
     """Render the chatbot interaction panel."""
     # Chat header
     st.markdown("""
-    <div class="chat-header-bar">
-        <div class="chat-avatar-wrap">🤖</div>
-        <div>
-            <div class="chat-name-label">MediAssist AI</div>
-            <div class="chat-status-dot">Online</div>
+    <div class="card" style="margin-bottom: 16px;">
+        <div class="chat-topbar" style="border-bottom: none;">
+            <div class="chat-ai-avatar">🤖</div>
+            <div class="chat-ai-info">
+                <div class="chat-ai-name">MediAssist AI</div>
+                <div class="chat-ai-status">Online</div>
+            </div>
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -1623,11 +1739,18 @@ def _chat_panel():
     if prompt := st.chat_input("Ask about your report…"):
         st.session_state.chat_history.append({"role": "user", "content": prompt})
 
+        # Load history for context
+        pat_hist = []
+        if st.session_state.get("is_logged_in"):
+            pat_hist = load_patient_history(st.session_state.user_email)
+
         with st.spinner("Analyzing clinical data…"):
             reply = chatbot_response(
                 user_query=prompt,
                 df=st.session_state.df if not st.session_state.df.empty else None,
                 history=st.session_state.chat_history[:-1],
+                patient_history=pat_hist,
+                language=st.session_state.voice_language
             )
 
         st.session_state.chat_history.append({"role": "assistant", "content": reply})
@@ -1731,6 +1854,11 @@ def run_pipeline(uploaded_file):
         progress.progress(100, text="Complete!")
         status.success("✅ **All stages complete.** Report fully analysed.")
         st.session_state.report_ready = True
+        
+        # SAVE HISTORY TO "BRAIN"
+        if st.session_state.get("is_logged_in") and st.session_state.get("user_email"):
+            save_patient_history(st.session_state.user_email, df, summary)
+            
         return True
 
     except Exception as e:
@@ -1743,6 +1871,68 @@ def run_pipeline(uploaded_file):
         progress.empty()
         status.empty()
 
+
+# ══════════════════════════════════════════════════════════════════════
+# PAGE: LOGIN
+# ══════════════════════════════════════════════════════════════════════
+
+def page_login():
+    st.markdown("""
+    <div class="page-header">
+        <div class="page-eyebrow">Welcome</div>
+        <div class="page-title">Patient Login</div>
+        <div class="page-subtitle">Securely access your medical intelligence dashboard</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Ensure DB exists
+    init_user_db()
+
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        st.markdown('<div class="card"><div style="padding: 20px;">', unsafe_allow_html=True)
+        
+        tab_login, tab_signup = st.tabs(["🔐 Login", "📝 Sign Up"])
+        
+        with tab_login:
+            st.markdown("<br>", unsafe_allow_html=True)
+            login_email = st.text_input("Email Address", placeholder="patient@example.com", key="login_email_input")
+            login_password = st.text_input("Password", type="password", key="login_password_input")
+            
+            if st.button("Sign In", type="primary", use_container_width=True):
+                if login_email and login_password:
+                    user = authenticate_user(login_email, login_password)
+                    if user:
+                        st.session_state.user_email = user[0]
+                        st.session_state.user_name = user[1]
+                        st.session_state.is_logged_in = True
+                        st.session_state.page = "Upload Report"
+                        st.rerun()
+                    else:
+                        st.error("❌ Invalid email or password.")
+                else:
+                    st.warning("⚠️ Please enter both email and password.")
+
+        with tab_signup:
+            st.markdown("<br>", unsafe_allow_html=True)
+            signup_email = st.text_input("Email Address", placeholder="patient@example.com", key="signup_email_input")
+            signup_name = st.text_input("Full Name", placeholder="John Doe", key="signup_name_input")
+            signup_password = st.text_input("Create Password", type="password", key="signup_password_input")
+            
+            if st.button("Create Account", type="primary", use_container_width=True):
+                if signup_email and signup_password:
+                    if "@" not in signup_email:
+                        st.error("⚠️ Please enter a valid email address.")
+                    else:
+                        success = create_user(signup_email, signup_password, signup_name)
+                        if success:
+                            st.success("✅ Account created successfully! Please switch to the Login tab.")
+                        else:
+                            st.error("❌ Email already registered. Please login.")
+                else:
+                    st.warning("⚠️ Please fill in all required fields.")
+        
+        st.markdown('</div></div>', unsafe_allow_html=True)
 
 # ══════════════════════════════════════════════════════════════════════
 # PAGE: DASHBOARD
@@ -1762,11 +1952,14 @@ def page_dashboard():
 
     _hero_card()
 
-    # --- DOCTOR VERIFICATION BANNER ---
+    # --- DOCTOR VERIFICATION STATUS INDICATOR ---
     if st.session_state.doctor_verified:
         st.markdown("""
         <div style="background: rgba(34,197,94,0.1); border: 1px solid #22c55e; padding: 16px; border-radius: 12px; margin-bottom: 20px;">
-            <h4 style="color: #4ade80; margin-top: 0; margin-bottom: 12px;">✅ Verified by Attending Doctor</h4>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                <h4 style="color: #4ade80; margin: 0;">✅ Verified by Attending Doctor</h4>
+                <span style="background: #22c55e; color: #000; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: bold;">VERIFIED</span>
+            </div>
         """, unsafe_allow_html=True)
         
         # Show doctor information
@@ -1796,6 +1989,39 @@ def page_dashboard():
                 timestamp_str = f"({timestamp})" if timestamp else ""
                 st.markdown(f"- 💊 **{med['name']}** : *{med['dosage']}* {timestamp_str}")
         st.markdown("</div>", unsafe_allow_html=True)
+    elif st.session_state.doctor_flagged:
+        # Flagged Status Indicator
+        st.markdown("""
+        <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; padding: 16px; border-radius: 12px; margin-bottom: 20px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                <h4 style="color: #f87171; margin: 0;">🚩 Report Flagged / Rejected</h4>
+                <span style="background: #ef4444; color: #fff; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: bold;">ACTION REQUIRED</span>
+            </div>
+        """, unsafe_allow_html=True)
+        
+        if st.session_state.flag_reason:
+             st.markdown(f"**Reason for Rejection:**\n\n{st.session_state.flag_reason}")
+             
+        if st.session_state.doctor_name:
+             st.markdown(f"<br><small style='color:#fca5a5'>Flagged by: {st.session_state.doctor_name}</small>", unsafe_allow_html=True)
+
+        st.markdown("</div>", unsafe_allow_html=True)
+    else:
+        # Pending Status Indicator
+        st.markdown("""
+        <div style="background: rgba(234, 179, 8, 0.1); border: 1px solid rgba(234, 179, 8, 0.4); padding: 16px; border-radius: 12px; margin-bottom: 20px;">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-size: 20px;">⏳</span>
+                    <div>
+                        <h4 style="color: #facc15; margin: 0; font-size: 15px;">Verification Pending</h4>
+                        <div style="color: #a1a1aa; font-size: 12px;">Awaiting physician review. Share report below.</div>
+                    </div>
+                </div>
+                <span style="background: rgba(234, 179, 8, 0.2); color: #facc15; border: 1px solid rgba(234, 179, 8, 0.4); padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: bold;">PENDING</span>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
 
     col1, col2 = st.columns([3, 2], gap="large")
     with col1:
@@ -2029,6 +2255,126 @@ def page_explanation():
 
 
 # ══════════════════════════════════════════════════════════════════════
+# PAGE: SHARE REPORT
+# ══════════════════════════════════════════════════════════════════════
+
+def send_gmail_api(sender, to, subject, body, attachment_text, attachment_name):
+    """Send email using Gmail API."""
+    SCOPES = ['https://www.googleapis.com/auth/gmail.send']
+    creds = None
+    # The file token.json stores the user's access and refresh tokens
+    if os.path.exists('token.json'):
+        creds = Credentials.from_authorized_user_file('token.json', SCOPES)
+    # If there are no (valid) credentials available, let the user log in.
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            if not os.path.exists('credentials.json'):
+                st.error("❌ Missing 'credentials.json'. Please download it from Google Cloud Console and place it in the app directory.")
+                return False
+            flow = InstalledAppFlow.from_client_secrets_file('credentials.json', SCOPES)
+            creds = flow.run_local_server(port=0)
+        # Save the credentials for the next run
+        with open('token.json', 'w') as token:
+            token.write(creds.to_json())
+
+    try:
+        service = build('gmail', 'v1', credentials=creds)
+        
+        message = MIMEMultipart()
+        message['to'] = to
+        message['from'] = sender
+        message['subject'] = subject
+
+        msg = MIMEText(body)
+        message.attach(msg)
+
+        if attachment_text:
+            part = MIMEApplication(attachment_text.encode('utf-8'), Name=attachment_name)
+            part['Content-Disposition'] = f'attachment; filename="{attachment_name}"'
+            message.attach(part)
+
+        raw = base64.urlsafe_b64encode(message.as_bytes()).decode()
+        body = {'raw': raw}
+
+        service.users().messages().send(userId="me", body=body).execute()
+        return True
+    except Exception as e:
+        st.error(f"Gmail API Error: {e}")
+        return False
+
+def page_share():
+    st.markdown("""
+    <div class="page-header">
+        <div class="page-eyebrow">Communication</div>
+        <div class="page-title">Share Report</div>
+        <div class="page-subtitle">Send your medical report to your doctor or family</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # ── Share with Doctor Section ─────────────────────────────────────
+    st.markdown("""
+    <div class="card">
+        <div class="card-header">
+            <span class="card-title">👨‍⚕️ Share with Doctor</span>
+            <span class="card-badge">Request Verification</span>
+        </div>
+        <div style="padding: 20px;">
+    """, unsafe_allow_html=True)
+
+    st.info("ℹ️ **Note:** This feature uses the **Gmail API**. First-time use will open a browser window to authenticate.")
+
+    col_s1, col_s2 = st.columns(2)
+    with col_s1:
+        # Patient (Sender)
+        p_sender_email = st.text_input("Your Email (Gmail)", value=st.session_state.get("user_email", ""), key="p_sender_email")
+    with col_s2:
+        # Doctor (Recipient)
+        d_recipient_email = st.text_input("Doctor's Email", placeholder="dr.smith@hospital.com", key="d_recipient_email")
+        p_subject = st.text_input("Subject", value=f"Medical Report Review Request - {st.session_state.get('user_name', 'Patient')}", key="p_subject")
+
+    p_message = st.text_area("Message", value="Dear Doctor,\n\nI have uploaded my latest medical report. Please review the attached summary and lab results.\n\nRegards,", height=100, key="p_message")
+
+    if st.button("📤 Send Report to Doctor", type="primary", use_container_width=True, key="btn_share_doctor"):
+        if not p_sender_email or not d_recipient_email:
+            st.error("Please fill in all fields (Your Email, Doctor's Email).")
+        else:
+            try:
+                with st.spinner("Sending report to doctor..."):
+                    # Generate Report Content
+                    report_text = f"MEDIASSIST PATIENT REPORT\n"
+                    report_text += f"=========================\n"
+                    report_text += f"Patient: {st.session_state.get('user_name', 'Unknown')}\n"
+                    report_text += f"Age: {st.session_state.patient_age} | Gender: {st.session_state.patient_gender}\n"
+                    report_text += f"Date: {datetime.now().strftime('%Y-%m-%d %H:%M')}\n\n"
+                    
+                    if st.session_state.summary:
+                        report_text += f"SUMMARY:\n{st.session_state.summary.get('heading', '')}\n"
+                        report_text += f"{st.session_state.summary.get('description', '')}\n\n"
+                    
+                    report_text += "LAB RESULTS:\n"
+                    if not st.session_state.df.empty:
+                        report_text += st.session_state.df.to_string(index=False)
+                    else:
+                        report_text += "No structured data extracted."
+                    
+                    report_text += "\n\nRISK ASSESSMENT:\n"
+                    if st.session_state.risk_scores:
+                        for r in st.session_state.risk_scores:
+                            report_text += f"- {r['category']}: {r['score']}% ({r['level']})\n"
+
+                    # Gmail API Logic
+                    if send_gmail_api(p_sender_email, d_recipient_email, p_subject, p_message, report_text, "patient_report.txt"):
+                        st.success(f"✅ Report sent successfully to {d_recipient_email}!")
+
+            except Exception as e:
+                st.error(f"❌ Error preparing email: {e}")
+
+    st.markdown("</div></div>", unsafe_allow_html=True)
+
+
+# ══════════════════════════════════════════════════════════════════════
 # PAGE: DOCTOR MODE (STAGE 7)
 # ══════════════════════════════════════════════════════════════════════
 
@@ -2212,17 +2558,37 @@ def page_doctor_mode():
         st.markdown("<hr style='border-color: rgba(30,64,175,0.7);'>", unsafe_allow_html=True)
         
         # Verification Toggle
-        st.markdown("### ✅ Clinical Verification")
-        verification_toggled = st.toggle(
-            "Mark Report as Clinically Verified", 
-            value=st.session_state.doctor_verified
+        st.markdown("### ✅ Clinical Verification / 🚩 Flag Report")
+        
+        # Determine current status index
+        if st.session_state.doctor_verified:
+            status_idx = 1
+        elif st.session_state.doctor_flagged:
+            status_idx = 2
+        else:
+            status_idx = 0
+            
+        status_selection = st.radio(
+            "Report Status",
+            ["Pending Review", "✅ Verified", "🚩 Flagged / Rejected"],
+            index=status_idx,
+            horizontal=True,
+            label_visibility="collapsed"
         )
         
-        if verification_toggled and not st.session_state.doctor_verified:
-            st.session_state.verification_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        
-        st.session_state.doctor_verified = verification_toggled
-        
+        # Update state based on selection
+        if status_selection == "✅ Verified":
+            if not st.session_state.doctor_verified:
+                st.session_state.verification_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            st.session_state.doctor_verified = True
+            st.session_state.doctor_flagged = False
+        elif status_selection == "🚩 Flagged / Rejected":
+            st.session_state.doctor_verified = False
+            st.session_state.doctor_flagged = True
+        else:
+            st.session_state.doctor_verified = False
+            st.session_state.doctor_flagged = False
+
         if st.session_state.doctor_verified and st.session_state.verification_timestamp:
             st.markdown(f"""
             <div style="background: rgba(34,197,94,0.1); border: 1px solid #22c55e; 
@@ -2230,6 +2596,14 @@ def page_doctor_mode():
                 <small>✅ Verified on: {st.session_state.verification_timestamp}</small>
             </div>
             """, unsafe_allow_html=True)
+            
+        if st.session_state.doctor_flagged:
+            st.session_state.flag_reason = st.text_area(
+                "Reason for Rejection / Flagging",
+                value=st.session_state.flag_reason,
+                placeholder="e.g., Poor scan quality, missing pages, incorrect patient data...",
+                help="This reason will be visible to the patient on the dashboard."
+            )
         
         # Digital Signature Section
         st.markdown("### ✍️ Digital Signature")
@@ -2381,6 +2755,8 @@ PHYSICIAN DETAILS:
 - License: {st.session_state.doctor_license}
 - Hospital: {st.session_state.doctor_hospital}
 - Verified: {'Yes' if st.session_state.doctor_verified else 'No'}
+- Flagged: {'Yes' if st.session_state.doctor_flagged else 'No'}
+{f"- Flag Reason: {st.session_state.flag_reason}" if st.session_state.doctor_flagged else ""}
 - Verification Date: {st.session_state.verification_timestamp or 'N/A'}
 
 CLINICAL ASSESSMENT:
@@ -2438,6 +2814,8 @@ PRESCRIPTIONS:
                 data=json.dumps({
                     "doctor": st.session_state.doctor_name,
                     "verified": st.session_state.doctor_verified,
+                    "flagged": st.session_state.doctor_flagged,
+                    "flag_reason": st.session_state.flag_reason,
                     "urgency": st.session_state.urgency_level,
                     "diagnosis": st.session_state.diagnosis_notes,
                     "lab_interpretations": st.session_state.lab_interpretations,
@@ -2451,6 +2829,67 @@ PRESCRIPTIONS:
             )
 
         st.markdown("</div>", unsafe_allow_html=True)
+
+        # Email Section - New Card
+        st.markdown("""
+        <div class="card" style="margin-top: 24px;">
+            <div class="card-header">
+                <span class="card-title">📧 Email Report to Patient</span>
+                <span class="card-badge">Gmail Secure</span>
+            </div>
+            <div style="padding: 20px;">
+        """, unsafe_allow_html=True)
+
+        st.info("ℹ️ **Note:** For Gmail, you must use an **App Password** if 2-Step Verification is enabled. (Google Account > Security > App Passwords)")
+
+        col_e1, col_e2 = st.columns(2)
+        with col_e1:
+            sender_email = st.text_input("Doctor's Email (Gmail)", placeholder="doctor@gmail.com", key="email_sender")
+            sender_password = st.text_input("App Password", type="password", help="Generate at myaccount.google.com/apppasswords", key="email_password")
+        with col_e2:
+            recipient_email = st.text_input("Patient's Email", value=st.session_state.user_email, placeholder="patient@example.com", key="email_recipient")
+            email_subject = st.text_input("Subject", value=f"Medical Report - {st.session_state.doctor_name or 'MediAssist'}", key="email_subject")
+        
+        email_body = st.text_area("Email Body", value=f"Dear Patient,\n\nPlease find attached your medical report from your visit on {datetime.now().strftime('%Y-%m-%d')}.\n\nRegards,\n{st.session_state.doctor_name or 'MediAssist'}", height=150, key="email_body")
+        
+        col_act1, col_act2 = st.columns([1, 3])
+        with col_act1:
+            send_btn = st.button("📤 Send Email Report", type="primary", key="send_email_btn", use_container_width=True)
+        
+        if send_btn:
+            if not sender_email or not sender_password or not recipient_email:
+                st.error("Please fill in all email fields (Sender, Password, Recipient).")
+            else:
+                try:
+                    with st.spinner("Sending email..."):
+                        msg = MIMEMultipart()
+                        msg['From'] = sender_email
+                        msg['To'] = recipient_email
+                        msg['Subject'] = email_subject
+
+                        msg.attach(MIMEText(email_body, 'plain'))
+                        
+                        # Attach TXT report
+                        attachment_txt = MIMEApplication(doctor_report.encode('utf-8'), Name="medical_report.txt")
+                        attachment_txt['Content-Disposition'] = 'attachment; filename="medical_report.txt"'
+                        msg.attach(attachment_txt)
+                        
+                        # SMTP Connection
+                        context = ssl.create_default_context()
+                        with smtplib.SMTP('smtp.gmail.com', 587) as server:
+                            server.ehlo()
+                            server.starttls(context=context)
+                            server.ehlo()
+                            server.login(sender_email, sender_password)
+                            server.send_message(msg)
+                        
+                    st.success(f"✅ Email sent successfully to {recipient_email}!")
+                except smtplib.SMTPAuthenticationError:
+                    st.error("❌ Authentication Failed. Please ensure you are using an **App Password** (Google Account > Security > App Passwords).")
+                except Exception as e:
+                    st.error(f"❌ Failed to send email: {e}")
+
+        st.markdown("</div></div>", unsafe_allow_html=True)
 
 
 # ══════════════════════════════════════════════════════════════════════
@@ -2566,12 +3005,16 @@ def page_settings():
 
 page = st.session_state.page
 
-if page == "Dashboard":
+if page == "Login":
+    page_login()
+elif page == "Dashboard":
     page_dashboard()
 elif page == "Upload Report":
     page_upload()
 elif page == "Explanation":
     page_explanation()
+elif page == "Share Report":
+    page_share()
 elif page == "Doctor Mode":
     page_doctor_mode()
 elif page == "Settings":
