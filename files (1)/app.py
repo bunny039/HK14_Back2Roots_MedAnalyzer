@@ -21,6 +21,9 @@ import io
 import requests
 import base64
 from datetime import datetime
+from dotenv import load_dotenv
+load_dotenv()
+
 
 # ── Page config (must be FIRST Streamlit call) ────────────────────────────────
 st.set_page_config(
@@ -85,6 +88,8 @@ def _init_state():
         "patient_allergies": "",
         # Voice & Language Settings
         "voice_language": "English",
+        # UI Language Settings
+        "ui_language": "English",
         # API Key storage
         "api_key": ""
     }
@@ -96,7 +101,7 @@ _init_state()
 
 
 # ══════════════════════════════════════════════════════════════════════
-# LANGUAGE SUPPORT - VOICE & TTS
+# LANGUAGE SUPPORT - UI TRANSLATIONS
 # ══════════════════════════════════════════════════════════════════════
 
 # Language codes for gTTS support (including 10 Indian languages)
@@ -118,6 +123,708 @@ LANGUAGE_CODES = {
     "Chinese (Simplified)": "zh-CN",
     "Japanese": "ja",
 }
+
+# ══════════════════════════════════════════════════════════════════════
+# UI TRANSLATIONS DICTIONARY
+# ══════════════════════════════════════════════════════════════════════
+
+TRANSLATIONS = {
+    "en": {
+        # Navigation
+        "Dashboard": "Dashboard",
+        "Upload Report": "Upload Report",
+        "Explanation": "Explanation",
+        "Doctor Mode": "Doctor Mode",
+        "Settings": "Settings",
+        
+        # Sidebar
+        "Navigation": "Navigation",
+        "Patient": "Patient",
+        "Age": "Age",
+        "Gender": "Gender",
+        "Not specified": "Not specified",
+        "Male": "Male",
+        "Female": "Female",
+        "Other": "Other",
+        "Doctor Mode": "Doctor Mode",
+        "Voice & Language (Sarvam AI)": "Voice & Language (Sarvam AI)",
+        "Select Language": "Select Language",
+        "Language Selected": "Language Selected",
+        "API Status": "API Status",
+        "Indian Languages Supported": "Indian Languages Supported",
+        "To use Sarvam AI": "To use Sarvam AI",
+        "Pipeline Status": "Pipeline Status",
+        "MediAssist": "MediAssist",
+        "Report Intelligence System": "Report Intelligence System",
+        "AI-powered · Not a medical device": "AI-powered · Not a medical device",
+        "Made with Gemini · Always consult a doctor": "Made with Gemini · Always consult a doctor",
+        
+        # Pipeline Steps
+        "Upload": "Upload",
+        "OCR": "OCR",
+        "Clean": "Clean",
+        "Extract": "Extract",
+        "Detect": "Detect",
+        "Risk Score": "Risk Score",
+        "Explain": "Explain",
+        "Complete": "Complete",
+        
+        # Dashboard
+        "Overview": "Overview",
+        "Health Dashboard": "Health Dashboard",
+        "Your complete medical report at a glance": "Your complete medical report at a glance",
+        "Health Overview": "Health Overview",
+        "No Report Analysed Yet": "No Report Analysed Yet",
+        "Upload a medical report to see your personalised health summary, lab results, and AI-powered insights.": "Upload a medical report to see your personalised health summary, lab results, and AI-powered insights.",
+        "Health Summary": "Health Summary",
+        "Tests Analysed": "Tests Analysed",
+        "Normal": "Normal",
+        "Need Attention": "Need Attention",
+        "Disclaimer": "Disclaimer",
+        "MediAssist is for informational purposes only. It does not constitute medical advice, diagnosis, or treatment. Always consult a qualified healthcare professional before making any health decisions.": "MediAssist is for informational purposes only. It does not constitute medical advice, diagnosis, or treatment. Always consult a qualified healthcare professional before making any health decisions.",
+        "Listen to summary": "Listen to summary",
+        "Language": "Language",
+        "Play Summary Audio": "Play Summary Audio",
+        
+        # Lab Results
+        "Lab Results": "Lab Results",
+        "No data": "No data",
+        "No lab values extracted yet. Upload a report first.": "No lab values extracted yet. Upload a report first.",
+        "Test Name": "Test Name",
+        "Value": "Value",
+        "Unit": "Unit",
+        "Reference Range": "Reference Range",
+        "Status": "Status",
+        "High": "High",
+        "Low": "Low",
+        
+        # Risk Analysis
+        "Risk Analysis": "Risk Analysis",
+        "Upload a report to see risk indicators.": "Upload a report to see risk indicators.",
+        "AI Scored": "AI Scored",
+        "values abnormal": "values abnormal",
+        
+        # Chat
+        "Chat with MediAssist": "Chat with MediAssist",
+        "MediAssist AI": "MediAssist AI",
+        "Online": "Online",
+        "Hello, I am MediAssist. I explain your lab report in simple, clear words. I only use the numbers in your report. I do not give medical diagnoses.": "Hello, I am MediAssist. I explain your lab report in simple, clear words. I only use the numbers in your report. I do not give medical diagnoses.",
+        "Ask about your report": "Ask about your report",
+        "Analyzing clinical data": "Analyzing clinical data",
+        "Listen to short summary": "Listen to short summary",
+        "Play Answer Audio": "Play Answer Audio",
+        
+        # Upload Page
+        "Stage 1 — Input": "Stage 1 — Input",
+        "Upload Medical Report": "Upload Medical Report",
+        "Supports PDF (text or scanned), JPG, and PNG formats up to 20 MB": "Supports PDF (text or scanned), JPG, and PNG formats up to 20 MB",
+        "Drop your report here or click to browse": "Drop your report here or click to browse",
+        "PDF · JPG · PNG · Max 20 MB": "PDF · JPG · PNG · Max 20 MB",
+        "Upload medical report": "Upload medical report",
+        "Analyse Report": "Analyse Report",
+        "Tests Found": "Tests Found",
+        "Abnormal": "Abnormal",
+        "OCR Method": "OCR Method",
+        "Analysis complete. Go to Dashboard to view results.": "Analysis complete. Go to Dashboard to view results.",
+        "Preview extracted lab values": "Preview extracted lab values",
+        "Raw extracted text": "Raw extracted text",
+        "System / OCR Status": "System / OCR Status",
+        
+        # Explanation Page
+        "Stage 6 — Insights": "Stage 6 — Insights",
+        "Personalised Explanation": "Personalised Explanation",
+        "Plain-language breakdown of your findings and lifestyle guidance": "Plain-language breakdown of your findings and lifestyle guidance",
+        "Please upload a report first.": "Please upload a report first.",
+        "Key Findings": "Key Findings",
+        "No abnormal values detected. All results are within normal ranges.": "No abnormal values detected. All results are within normal ranges.",
+        "Your value is": "Your value is",
+        "than the normal range": "than the normal range",
+        "Listen to explanation": "Listen to explanation",
+        "Play Explanation Audio": "Play Explanation Audio",
+        "Lifestyle Suggestions": "Lifestyle Suggestions",
+        "Personalised": "Personalised",
+        "These are general wellness suggestions, not personalised medical advice.": "These are general wellness suggestions, not personalised medical advice.",
+        "Important": "Important",
+        "This explanation is AI-generated for informational purposes only. It does not constitute a medical opinion. Please consult your doctor to discuss your results and any recommended follow-up.": "This explanation is AI-generated for informational purposes only. It does not constitute a medical opinion. Please consult your doctor to discuss your results and any recommended follow-up.",
+        
+        # Doctor Mode
+        "Stage 7 — Verification": "Stage 7 — Verification",
+        "Doctor Mode": "Doctor Mode",
+        "Raw data, structured JSON, diagnostic detail, and therapeutics": "Raw data, structured JSON, diagnostic detail, and therapeutics",
+        "Toggle Doctor Mode in the sidebar to access this view.": "Toggle Doctor Mode in the sidebar to access this view.",
+        "No report analysed yet. Go to Upload Report first.": "No report analysed yet. Go to Upload Report first.",
+        "Raw Text": "Raw Text",
+        "Structured Data": "Structured Data",
+        "JSON Export": "JSON Export",
+        "Risk Detail": "Risk Detail",
+        "Clinical Actions": "Clinical Actions",
+        "Extracted Raw Text": "Extracted Raw Text",
+        "Download Raw Text": "Download Raw Text",
+        "Download Cleaned Text": "Download Cleaned Text",
+        "Listen to raw text excerpt": "Listen to raw text excerpt",
+        "Play Raw Text Audio": "Play Raw Text Audio",
+        "Structured Lab Data": "Structured Lab Data",
+        "No structured data available.": "No structured data available.",
+        "Lab Results JSON": "Lab Results JSON",
+        "Download JSON": "Download JSON",
+        "Download CSV": "Download CSV",
+        "AI Summary JSON": "AI Summary JSON",
+        "Risk Score Detail": "Risk Score Detail",
+        "Risk Insights": "Risk Insights",
+        "Physician Verification & Therapeutics": "Physician Verification & Therapeutics",
+        "Doctor Information": "Doctor Information",
+        "Doctor's Name": "Doctor's Name",
+        "License/Registration No.": "License/Registration No.",
+        "Hospital/Clinic": "Hospital/Clinic",
+        "Clinical Assessment": "Clinical Assessment",
+        "Urgency Level": "Urgency Level",
+        "Normal": "Normal",
+        "Moderate": "Moderate",
+        "High": "High",
+        "Critical": "Critical",
+        "Follow-up Date": "Follow-up Date",
+        "Patient Allergies": "Patient Allergies",
+        "Detailed Lab Interpretations": "Detailed Lab Interpretations",
+        "Lab Result Analysis": "Lab Result Analysis",
+        "Clinical Verification": "Clinical Verification",
+        "Mark Report as Clinically Verified": "Mark Report as Clinically Verified",
+        "Verified on": "Verified on",
+        "Digital Signature": "Digital Signature",
+        "Diagnosis & Clinical Notes": "Diagnosis & Clinical Notes",
+        "Diagnosis & Observations": "Diagnosis & Observations",
+        "Physician's Notes": "Physician's Notes",
+        "Additional Clinical Notes": "Additional Clinical Notes",
+        "Contraindications & Warnings": "Contraindications & Warnings",
+        "Drug Interactions & Contraindications": "Drug Interactions & Contraindications",
+        "Recommended Tests": "Recommended Tests",
+        "Add Test Recommendation": "Add Test Recommendation",
+        "Add Test": "Add Test",
+        "Specialist Referrals": "Specialist Referrals",
+        "Add Specialist Referral": "Add Specialist Referral",
+        "Add Referral": "Add Referral",
+        "Prescriptions": "Prescriptions",
+        "Medication Name": "Medication Name",
+        "Dosage & Frequency": "Dosage & Frequency",
+        "Add Medication": "Add Medication",
+        "Current Prescriptions List": "Current Prescriptions List",
+        "Clear All Prescriptions": "Clear All Prescriptions",
+        "Export Report": "Export Report",
+        "Download Doctor's Report (TXT)": "Download Doctor's Report (TXT)",
+        "Download Report Data (JSON)": "Download Report Data (JSON)",
+        
+        # Settings
+        "Configuration": "Configuration",
+        "Settings": "Settings",
+        "Customise MediAssist to your preferences": "Customise MediAssist to your preferences",
+        "Patient Profile": "Patient Profile",
+        "AI Assistant (Gemini API)": "AI Assistant (Gemini API)",
+        "Gemini API key loaded from environment. Full AI responses are active.": "Gemini API key loaded from environment. Full AI responses are active.",
+        "Gemini API key not found. Set the GEMINI_API_KEY environment variable for full AI chat.": "Gemini API key not found. Set the GEMINI_API_KEY environment variable for full AI chat.",
+        "OCR Dependencies": "OCR Dependencies",
+        "Ready": "Ready",
+        "Missing": "Missing",
+        "Install missing libraries": "Install missing libraries",
+        "Session Data": "Session Data",
+        "Clear All Session Data": "Clear All Session Data",
+        "Session cleared successfully.": "Session cleared successfully.",
+        
+        # General
+        "Verified by Attending Doctor": "Verified by Attending Doctor",
+        "Clinical Notes": "Clinical Notes",
+        "Prescribed Therapeutics": "Prescribed Therapeutics",
+        "Medical Report Intelligence System": "Medical Report Intelligence System",
+        "Starting pipeline": "Starting pipeline",
+        "Stage 1/7": "Stage 1/7",
+        "Stage 2/7": "Stage 2/7",
+        "Stage 3/7": "Stage 3/7",
+        "Stage 4/7": "Stage 4/7",
+        "Stage 5/7": "Stage 5/7",
+        "Stage 6/7": "Stage 6/7",
+        "All stages complete. Report fully analysed.": "All stages complete. Report fully analysed.",
+        "Could not extract text from this file. Ensure the document is clear and readable.": "Could not extract text from this file. Ensure the document is clear and readable.",
+        "Pipeline error": "Pipeline error",
+        "Extracting text via OCR": "Extracting text via OCR",
+        "Cleaning extracted text": "Cleaning extracted text",
+        "Extracting structured lab parameters": "Extracting structured lab parameters",
+        "Detecting abnormal values": "Detecting abnormal values",
+        "Computing risk scores": "Computing risk scores",
+        "Generating personalised explanation": "Generating personalised explanation",
+    },
+    "hi": {
+        # Navigation
+        "Dashboard": "डैशबोर्ड",
+        "Upload Report": "रिपोर्ट अपलोड करें",
+        "Explanation": "स्पष्टीकरण",
+        "Doctor Mode": "डॉक्टर मोड",
+        "Settings": "सेटिंग्स",
+        
+        # Sidebar
+        "Navigation": "नेविगेशन",
+        "Patient": "मरीज",
+        "Age": "उम्र",
+        "Gender": "लिंग",
+        "Not specified": "निर्दिष्ट नहीं",
+        "Male": "पुरुष",
+        "Female": "महिला",
+        "Other": "अन्य",
+        "Doctor Mode": "डॉक्टर मोड",
+        "Voice & Language (Sarvam AI)": "आवाज और भाषा (Sarvam AI)",
+        "Select Language": "भाषा चुनें",
+        "Language Selected": "चुनी गई भाषा",
+        "API Status": "API स्थिति",
+        "Indian Languages Supported": "भारतीय भाषाएं समर्थित",
+        "To use Sarvam AI": "Sarvam AI का उपयोग करने के लिए",
+        "Pipeline Status": "पाइपलाइन स्थिति",
+        "MediAssist": "MediAssist",
+        "Report Intelligence System": "रिपोर्ट इंटेलिजेंस सिस्टम",
+        "AI-powered · Not a medical device": "AI-powered · चिकित्सा उपकरण नहीं",
+        "Made with Gemini · Always consult a doctor": "Gemini से बना · हमेशा डॉक्टर से सलाह लें",
+        
+        # Pipeline Steps
+        "Upload": "अपलोड",
+        "OCR": "OCR",
+        "Clean": "साफ़ करें",
+        "Extract": "निकालें",
+        "Detect": "पता लगाएं",
+        "Risk Score": "जोखिम स्कोर",
+        "Explain": "समझाएं",
+        "Complete": "पूर्ण",
+        
+        # Dashboard
+        "Overview": "अवलोकन",
+        "Health Dashboard": "स्वास्थ्य डैशबोर्ड",
+        "Your complete medical report at a glance": "अपनी पूर्ण चिकित्सा रिपोर्ट एक नज़र में",
+        "Health Overview": "स्वास्थ्य अवलोकन",
+        "No Report Analysed Yet": "अभी तक कोई रिपोर्ट विश्लेषण नहीं",
+        "Upload a medical report to see your personalised health summary, lab results, and AI-powered insights.": "अपना व्यक्तिगत स्वास्थ्य सारांश, लैब परिणाम और AI-संचालित अंतर्दृष्टि देखने के लिए चिकित्सा रिपोर्ट अपलोड करें।",
+        "Health Summary": "स्वास्थ्य सारांश",
+        "Tests Analysed": "परीक्षण विश्लेषित",
+        "Normal": "सामान्य",
+        "Need Attention": "ध्यान देने योग्य",
+        "Disclaimer": "अस्वीकरण",
+        "MediAssist is for informational purposes only. It does not constitute medical advice, diagnosis, or treatment. Always consult a qualified healthcare professional before making any health decisions.": "MediAssist केवल सूचनात्मक उद्देश्यों के लिए है। यह चिकित्सा सलाह, निदान या उपचार नहीं है। कोई भी स्वास्थ्य निर्णय लेने से पहले हमेशा एक योग्य स्वास्थ्य पेशेवर से परामर्श करें।",
+        "Listen to summary": "सारांश सुनें",
+        "Language": "भाषा",
+        "Play Summary Audio": "सारांश ऑडियो चलाएं",
+        
+        # Lab Results
+        "Lab Results": "लैब परिणाम",
+        "No data": "कोई डेटा नहीं",
+        "No lab values extracted yet. Upload a report first.": "अभी तक कोई लैब मान नहीं निकाले गए। पहले रिपोर्ट अपलोड करें।",
+        "Test Name": "परीक्षण का नाम",
+        "Value": "मान",
+        "Unit": "इकाई",
+        "Reference Range": "संदर्भ सीमा",
+        "Status": "स्थिति",
+        "High": "उच्च",
+        "Low": "कम",
+        
+        # Risk Analysis
+        "Risk Analysis": "जोखिम विश्लेषण",
+        "Upload a report to see risk indicators.": "जोखिम संकेतक देखने के लिए रिपोर्ट अपलोड करें।",
+        "AI Scored": "AI स्कोर",
+        "values abnormal": "मान असामान्य",
+        
+        # Chat
+        "Chat with MediAssist": "MediAssist से चैट करें",
+        "MediAssist AI": "MediAssist AI",
+        "Online": "ऑनलाइन",
+        "Hello, I am MediAssist. I explain your lab report in simple, clear words. I only use the numbers in your report. I do not give medical diagnoses.": "नमस्ते, मैं MediAssist हूं। मैं आपकी लैब रिपोर्ट को सरल, स्पष्ट शब्दों में समझाता हूं। मैं केवल आपकी रिपोर्ट के आंकड़ों का उपयोग करता हूं। मैं चिकित्सा निदान नहीं देता।",
+        "Ask about your report": "अपनी रिपोर्ट के बारे में पूछें",
+        "Analyzing clinical data": "नैदानिक डेटा का विश्लेषण",
+        "Listen to short summary": "संक्षिप्त सारांश सुनें",
+        "Play Answer Audio": "उत्तर ऑडियो चलाएं",
+        
+        # Upload Page
+        "Stage 1 — Input": "चरण 1 — इनपुट",
+        "Upload Medical Report": "चिकित्सा रिपोर्ट अपलोड करें",
+        "Supports PDF (text or scanned), JPG, and PNG formats up to 20 MB": "PDF (टेक्स्ट या स्कैन), JPG और PNG प्रारूप 20 MB तक समर्थित",
+        "Drop your report here or click to browse": "अपनी रिपोर्ट यहां छोड़ें या ब्राउज़ करने के लिए क्लिक करें",
+        "PDF · JPG · PNG · Max 20 MB": "PDF · JPG · PNG · अधिकतम 20 MB",
+        "Upload medical report": "चिकित्सा रिपोर्ट अपलोड करें",
+        "Analyse Report": "रिपोर्ट का विश्लेषण करें",
+        "Tests Found": "परीक्षण मिले",
+        "Abnormal": "असामान्य",
+        "OCR Method": "OCR विधि",
+        "Analysis complete. Go to Dashboard to view results.": "विश्लेषण पूर्ण। परिणाम देखने के लिए डैशबोर्ड पर जाएं।",
+        "Preview extracted lab values": "निकाले गए लैब मानों का पूर्वावलोकन",
+        "Raw extracted text": "कच्चा निकाला गया टेक्स्ट",
+        "System / OCR Status": "सिस्टम / OCR स्थिति",
+        
+        # Explanation Page
+        "Stage 6 — Insights": "चरण 6 — अंतर्दृष्टि",
+        "Personalised Explanation": "व्यक्तिगत स्पष्टीकरण",
+        "Plain-language breakdown of your findings and lifestyle guidance": "आपके निष्कर्षों और जीवनशैली मार्गदर्शन का सरल भाषा में विवरण",
+        "Please upload a report first.": "कृपया पहले रिपोर्ट अपलोड करें।",
+        "Key Findings": "मुख्य निष्कर्ष",
+        "No abnormal values detected. All results are within normal ranges.": "कोई असामान्य मान नहीं मिला। सभी परिणाम सामान्य सीमा के भीतर हैं।",
+        "Your value is": "आपका मान है",
+        "than the normal range": "सामान्य सीमा से अधिक",
+        "Listen to explanation": "स्पष्टीकरण सुनें",
+        "Play Explanation Audio": "स्पष्टीकरण ऑडियो चलाएं",
+        "Lifestyle Suggestions": "जीवनशैली सुझाव",
+        "Personalised": "व्यक्तिगत",
+        "These are general wellness suggestions, not personalised medical advice.": "ये सामान्य स्वास्थ्य सुझाव हैं, व्यक्तिगत चिकित्सा सलाह नहीं।",
+        "Important": "महत्वपूर्ण",
+        "This explanation is AI-generated for informational purposes only. It does not constitute a medical opinion. Please consult your doctor to discuss your results and any recommended follow-up.": "यह स्पष्टीकरण केवल सूचनात्मक उद्देश्यों के लिए AI द्वारा तैयार किया गया है। यह चिकित्सा राय नहीं है। कृपया अपने परिणामों और किसी भी अनुशंसित फॉलो-अप पर चर्चा के लिए अपने डॉक्टर से परामर्श करें।",
+        
+        # Doctor Mode
+        "Stage 7 — Verification": "चरण 7 — सत्यापन",
+        "Doctor Mode": "डॉक्टर मोड",
+        "Raw data, structured JSON, नैदानिक विवरण और चिकित्सा": "कच्चा डेटा, संरचित JSON, नैदानिक विवरण और चिकित्सा",
+        "Toggle Doctor Mode in the sidebar to access this view.": "इस व्यू तक पहुंचने के लिए साइडबार में डॉक्टर मोड टॉगल करें।",
+        "No report analysed yet. Go to Upload Report first.": "अभी तक कोई रिपोर्ट विश्लेषण नहीं। पहले अपलोड रिपोर्ट पर जाएं।",
+        "Raw Text": "कच्चा टेक्स्ट",
+        "Structured Data": "संरचित डेटा",
+        "JSON Export": "JSON निर्यात",
+        "Risk Detail": "जोखिम विवरण",
+        "Clinical Actions": "नैदानिक कार्रवाई",
+        "Extracted Raw Text": "निकाला गया कच्चा टेक्स्ट",
+        "Download Raw Text": "कच्चा टेक्स्ट डाउनलोड करें",
+        "Download Cleaned Text": "साफ किया गया टेक्स्ट डाउनलोड करें",
+        "Listen to raw text excerpt": "कच्चे टेक्स्ट का अंश सुनें",
+        "Play Raw Text Audio": "कच्चा टेक्स्ट ऑडियो चलाएं",
+        "Structured Lab Data": "संरचित लैब डेटा",
+        "No structured data available.": "कोई संरचित डेटा उपलब्ध नहीं।",
+        "Lab Results JSON": "लैब परिणाम JSON",
+        "Download JSON": "JSON डाउनलोड करें",
+        "Download CSV": "CSV डाउनलोड करें",
+        "AI Summary JSON": "AI सारांश JSON",
+        "Risk Score Detail": "जोखिम स्कोर विवरण",
+        "Risk Insights": "जोखिम अंतर्दृष्टि",
+        "Physician Verification & Therapeutics": "चिकित्सक सत्यापन और उपचार",
+        "Doctor Information": "डॉक्टर जानकारी",
+        "Doctor's Name": "डॉक्टर का नाम",
+        "License/Registration No.": "लाइसेंस/पंजीकरण नंबर",
+        "Hospital/Clinic": "अस्पताल/क्लीनिक",
+        "Clinical Assessment": "नैदानिक मूल्यांकन",
+        "Urgency Level": "तत्कालता स्तर",
+        "Normal": "सामान्य",
+        "Moderate": "मध्यम",
+        "High": "उच्च",
+        "Critical": "गंभीर",
+        "Follow-up Date": "फॉलो-अप तिथि",
+        "Patient Allergies": "मरीज की एलर्जी",
+        "Detailed Lab Interpretations": "विस्तृत लैब व्याख्या",
+        "Lab Result Analysis": "लैब परिणाम विश्लेषण",
+        "Clinical Verification": "नैदानिक सत्यापन",
+        "Mark Report as Clinically Verified": "रिपोर्ट को क्लिनिकल रूप से सत्यापित के रूप में चिह्नित करें",
+        "Verified on": "सत्यापित",
+        "Digital Signature": "डिजिटल हस्ताक्षर",
+        "Diagnosis & Clinical Notes": "निदान और नैदानिक नोट्स",
+        "Diagnosis & Observations": "निदान और अवलोकन",
+        "Physician's Notes": "चिकित्सक के नोट्स",
+        "Additional Clinical Notes": "अतिरिक्त नैदानिक नोट्स",
+        "Contraindications & Warnings": "कॉन्ट्राइंडिकेशन और चेतावनियां",
+        "Drug Interactions & Contraindications": "ड्रग इंटरैक्शन और कॉन्ट्राइंडिकेशन",
+        "Recommended Tests": "अनुशंसित परीक्षण",
+        "Add Test Recommendation": "परीक्षण अनुशंसा जोड़ें",
+        "Add Test": "परीक्षण जोड़ें",
+        "Specialist Referrals": "विशेषist रेफरल",
+        "Add Specialist Referral": "विशेष रेफरल जोड़ें",
+        "Add Referral": "रेफरल जोड़ें",
+        "Prescriptions": "नुस्खे",
+        "Medication Name": "दवा का नाम",
+        "Dosage & Frequency": "खुराक और आवृत्ति",
+        "Add Medication": "दवा जोड़ें",
+        "Current Prescriptions List": "वर्तमान नुस्खे की सूची",
+        "Clear All Prescriptions": "सभी नुस्खे साफ़ करें",
+        "Export Report": "रिपोर्ट निर्यात करें",
+        "Download Doctor's Report (TXT)": "डॉक्टर की रिपोर्ट (TXT) डाउनलोड करें",
+        "Download Report Data (JSON)": "रिपोर्ट डेटा (JSON) डाउनलोड करें",
+        
+        # Settings
+        "Configuration": "कॉन्फ़िगरेशन",
+        "Settings": "सेटिंग्स",
+        "Customise MediAssist to your preferences": "MediAssist को अपनी प्राथमिकताओं के अनुसार अनुकूलित करें",
+        "Patient Profile": "मरीज प्रोफाइल",
+        "AI Assistant (Gemini API)": "AI सहायक (Gemini API)",
+        "Gemini API key loaded from environment. Full AI responses are active.": "Gemini API कुंजी वातावरण से लोड। पूर्ण AI प्रतिक्रियाएं सक्रिय।",
+        "Gemini API key not found. Set the GEMINI_API_KEY environment variable for full AI chat.": "Gemini API कुंजी नहीं मिली। पूर्ण AI चैट के लिए GEMINI_API_KEY सेट करें।",
+        "OCR Dependencies": "OCR निर्भरताएं",
+        "Ready": "तैयार",
+        "Missing": "गायब",
+        "Install missing libraries": "गायब लाइब्रेरी इंस्टॉल करें",
+        "Session Data": "सत्र डेटा",
+        "Clear All Session Data": "सभी सत्र डेटा साफ़ करें",
+        "Session cleared successfully.": "सत्र सफलतापूर्वक साफ़ किया गया।",
+        
+        # General
+        "Verified by Attending Doctor": "आने वाले डॉक्टर द्वारा सत्यापित",
+        "Clinical Notes": "नैदानिक नोट्स",
+        "Prescribed Therapeutics": "निर्धारित उपचार",
+    },
+    "ta": {
+        # Navigation
+        "Dashboard": "டैஷ்போர்ட்",
+        "Upload Report": "ரிப்போர்டை பதிவேற்றவும்",
+        "Explanation": "விளக்கம்",
+        "Doctor Mode": "மருத்துவர் பயன்முறை",
+        "Settings": "அமைப்புகள்",
+        
+        # Sidebar
+        "Navigation": "வழிசெலுத்தல்",
+        "Patient": "நோயாளி",
+        "Age": "வயது",
+        "Gender": "பாலினம்",
+        "Not specified": "குறிப்பிடப்படவில்லை",
+        "Male": "ஆண்",
+        "Female": "பெண்",
+        "Other": "மற்றவை",
+        "Voice & Language (Sarvam AI)": "குரல் மற்றும் மொழி (Sarvam AI)",
+        "Select Language": "மொழியைத் தேர்ந்தெடுக்கவும்",
+        "MediAssist": "MediAssist",
+        
+        # Dashboard
+        "Overview": "கண்ணோட்",
+        "Health Dashboard": "ஆரோக்கிய டேஷ்போர்ட்",
+        "Your complete medical report at a glance": "உங்கள் முழு மருத்துவ அறிக்கையை ஒரு பார்வையில் காண்க",
+        "Health Overview": "ஆரோக்கிய கண்ணோட்",
+        "No Report Analysed Yet": "இன்னும் எந்த அறிக்கையும் பகுப்பாய்வு செய்யப்படவில்லை",
+        "Tests Analysed": "பகுப்பாய்வு செய்யப்பட்ட சோதனைகள்",
+        "Normal": "சாதாரண",
+        "Need Attention": "கவனம் தேவை",
+        
+        # Lab Results
+        "Lab Results": "ஆய்வக முடிவுகள்",
+        "No data": "தரவு இல்லை",
+        "Test Name": "சோதனை பெயர்",
+        "Value": "மதிப்பு",
+        "Unit": "அலகு",
+        "Reference Range": "குறிப்பு வரம்பு",
+        "Status": "நிலை",
+        "High": "உயர்வு",
+        "Low": "குறைவு",
+        
+        # Upload Page
+        "Stage 1 — Input": "நிலை 1 — உள்ளீடு",
+        "Upload Medical Report": "மருத்துவ அறிக்கையை பதிவேற்றவும்",
+        
+        # Explanation Page
+        "Stage 6 — Insights": "நிலை 6 — நுண்ணறிவு",
+        "Personalised Explanation": "தனிப்படுத்தப்பட்ட விளக்கம்",
+        
+        # Doctor Mode
+        "Stage 7 — Verification": "நிலை 7 — சரிபார்ப்பு",
+        "Doctor Mode": "மருத்துவர் பயன்முறை",
+        
+        # Settings
+        "Configuration": "கட்டமைப்பு",
+        "Settings": "அமைப்புகள்",
+        "Patient Profile": "நோயாளி சுயவிவரம்",
+    },
+    "te": {
+        # Navigation
+        "Dashboard": "डैशबोर्ड",
+        "Upload Report": "రిపోర్ట్‌ను అప్‌లోड్ చేయండి",
+        "Explanation": "解释",
+        "Doctor Mode": "डॉक्टर मोड",
+        "Settings": "Settings",
+        
+        # Sidebar
+        "Navigation": "Navigation",
+        "Patient": "Patient",
+        "Age": "Age",
+        "Gender": "Gender",
+        "MediAssist": "MediAssist",
+        
+        # Dashboard
+        "Overview": "Overview",
+        "Health Dashboard": "Health Dashboard",
+        "Normal": "Normal",
+        
+        # Settings
+        "Configuration": "Configuration",
+        "Settings": "Settings",
+    },
+    "kn": {
+        # Navigation
+        "Dashboard": "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
+        "Upload Report": "ರಿಪೋರ್ಟ್ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ",
+        "Settings": "ಸೆಟ್ಟಿಂಗ್‌ಗಳು",
+    },
+    "ml": {
+        # Navigation
+        "Dashboard": "ഡാഷ്‌ബോര്‍ഡ്",
+        "Upload Report": "റിപ്പോര്‍ട്ട് അപ്‌ലോഡ് ചെയ്യുക",
+        "Settings": "സെറ്റിംഗ്‌സ്",
+    },
+    "mr": {
+        # Navigation
+        "Dashboard": "डॅशबोर्ड",
+        "Upload Report": "रिपोर्ट अपलोड करा",
+        "Settings": "सेटिंग्ज",
+    },
+    "gu": {
+        # Navigation
+        "Dashboard": "ડૅશબોર્ડ",
+        "Upload Report": "રિપોર્ટ અપલોડ કરો",
+        "Settings": "સેટિંગ્સ",
+    },
+    "bn": {
+        # Navigation
+        "Dashboard": "ড্যাশবোর্ড",
+        "Upload Report": "রিপোর্ট আপলোড করুন",
+        "Settings": "সেটিংস",
+    },
+    "pa": {
+        # Navigation
+        "Dashboard": "ਡੈਸ਼ਬੋਰਡ",
+        "Upload Report": "ਰਿਪੋਰਟ ਅੱਪਲੋਡ ਕਰੋ",
+        "Settings": "ਸੈਟਿੰਗਸ",
+    },
+    "ur": {
+        # Navigation
+        "Dashboard": "ڈیش بورڈ",
+        "Upload Report": "رپورٹ اپلوڈ کریں",
+        "Settings": "سیٹنگز",
+    },
+    "es": {
+        # Navigation
+        "Dashboard": "Panel",
+        "Upload Report": "Subir Informe",
+        "Explanation": "Explicación",
+        "Doctor Mode": "Modo Doctor",
+        "Settings": "Configuración",
+        
+        # Sidebar
+        "Navigation": "Navegación",
+        "Patient": "Paciente",
+        "Age": "Edad",
+        "Gender": "Género",
+        "MediAssist": "MediAssist",
+        
+        # Dashboard
+        "Overview": "Resumen",
+        "Health Dashboard": "Panel de Salud",
+        "Your complete medical report at a glance": "Su informe médico completo de un vistazo",
+        "Normal": "Normal",
+        
+        # Settings
+        "Configuration": "Configuración",
+        "Patient Profile": "Perfil del Paciente",
+    },
+    "fr": {
+        # Navigation
+        "Dashboard": "Tableau de bord",
+        "Upload Report": "Télécharger le rapport",
+        "Explanation": "Explication",
+        "Doctor Mode": "Mode Médecin",
+        "Settings": "Paramètres",
+        
+        # Sidebar
+        "Navigation": "Navigation",
+        "Patient": "Patient",
+        "Age": "Âge",
+        "Gender": "Genre",
+        "MediAssist": "MediAssist",
+        
+        # Dashboard
+        "Overview": "Aperçu",
+        "Health Dashboard": "Tableau de santé",
+        "Normal": "Normal",
+        
+        # Settings
+        "Configuration": "Configuration",
+        "Patient Profile": "Profil du patient",
+    },
+    "de": {
+        # Navigation
+        "Dashboard": "Dashboard",
+        "Upload Report": "Bericht hochladen",
+        "Explanation": "Erklärung",
+        "Doctor Mode": "Arztmodus",
+        "Settings": "Einstellungen",
+        
+        # Sidebar
+        "Navigation": "Navigation",
+        "Patient": "Patient",
+        "Age": "Alter",
+        "Gender": "Geschlecht",
+        "MediAssist": "MediAssist",
+        
+        # Dashboard
+        "Overview": "Übersicht",
+        "Health Dashboard": "Gesundheits-Dashboard",
+        "Normal": "Normal",
+        
+        # Settings
+        "Configuration": "Konfiguration",
+        "Patient Profile": "Patientenprofil",
+    },
+    "zh-CN": {
+        # Navigation
+        "Dashboard": "仪表板",
+        "Upload Report": "上传报告",
+        "Explanation": "解释",
+        "Doctor Mode": "医生模式",
+        "Settings": "设置",
+        
+        # Sidebar
+        "Navigation": "导航",
+        "Patient": "患者",
+        "Age": "年龄",
+        "Gender": "性别",
+        "MediAssist": "MediAssist",
+        
+        # Dashboard
+        "Overview": "概览",
+        "Health Dashboard": "健康仪表板",
+        "Normal": "正常",
+        
+        # Settings
+        "Configuration": "配置",
+        "Patient Profile": "患者资料",
+    },
+    "ja": {
+        # Navigation
+        "Dashboard": "ダッシュボード",
+        "Upload Report": "レポートをアップロード",
+        "Explanation": "説明",
+        "Doctor Mode": "ドクターモード",
+        "Settings": "設定",
+        
+        # Sidebar
+        "Navigation": "ナビゲーション",
+        "Patient": "患者",
+        "Age": "年齢",
+        "Gender": "性別",
+        "MediAssist": "MediAssist",
+        
+        # Dashboard
+        "Overview": "概要",
+        "Health Dashboard": "健康ダッシュボード",
+        "Normal": "正常",
+        
+        # Settings
+        "Configuration": "設定",
+        "Patient Profile": "患者プロファイル",
+    },
+}
+
+# ══════════════════════════════════════════════════════════════════════
+# TRANSLATION HELPER FUNCTION
+# ══════════════════════════════════════════════════════════════════════
+
+def _t(key: str) -> str:
+    """
+    Get translated string for the current UI language.
+    Falls back to English if translation not found.
+    """
+    ui_lang = st.session_state.get("ui_language", "English")
+    lang_code = LANGUAGE_CODES.get(ui_lang, "en")
+    
+    # Try to get translation
+    if lang_code in TRANSLATIONS:
+        if key in TRANSLATIONS[lang_code]:
+            return TRANSLATIONS[lang_code][key]
+    
+    # Fallback to English
+    if key in TRANSLATIONS["en"]:
+        return TRANSLATIONS["en"][key]
+    
+    # Return key if not found
+    return key
 
 # Language to ISO 639-1 code mapping for IndicTrans2
 LANG_TO_ISO = {
@@ -378,15 +1085,32 @@ with st.sidebar:
     </div>
     """, unsafe_allow_html=True)
 
+    # UI Language Selector - Top of sidebar
+    st.markdown('<div class="nav-label" style="margin-top:10px;">🌐 UI Language</div>', unsafe_allow_html=True)
+    st.session_state.ui_language = st.selectbox(
+        "Select UI Language",
+        list(LANGUAGE_CODES.keys()),
+        index=list(LANGUAGE_CODES.keys()).index(st.session_state.ui_language) 
+            if st.session_state.ui_language in LANGUAGE_CODES else 0,
+        help="Choose language for the user interface",
+        key="ui_language_selector"
+    )
+    
+    # Sync voice language with UI language
+    if st.session_state.ui_language != st.session_state.voice_language:
+        st.session_state.voice_language = st.session_state.ui_language
+
+    st.markdown("---")
+
     # Navigation
     st.markdown('<div class="nav-label">Navigation</div>', unsafe_allow_html=True)
 
     nav_items = [
-        ("Dashboard",     "📊"),
-        ("Upload Report", "📁"),
-        ("Explanation",   "💡"),
-        ("Doctor Mode",   "🩺"),
-        ("Settings",      "⚙️"),
+        (_t("Dashboard"),     "📊"),
+        (_t("Upload Report"), "📁"),
+        (_t("Explanation"),   "💡"),
+        (_t("Doctor Mode"),   "🩺"),
+        (_t("Settings"),      "⚙️"),
     ]
 
     for page_name, icon in nav_items:
@@ -1851,4 +2575,4 @@ elif page == "Explanation":
 elif page == "Doctor Mode":
     page_doctor_mode()
 elif page == "Settings":
-    page_settings()
+    page_settings() 
